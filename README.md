@@ -17,7 +17,7 @@ This is the repo of all of the game server recipe files.
 
 ### Feature Plan
 
-#### *sprint 1.0.0*
+#### **Rolling release**
 
 - [ ] Counterstrike Global Offensive
 - [ ] Valhiem
