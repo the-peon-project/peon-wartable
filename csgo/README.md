@@ -1,4 +1,6 @@
-# Peon - Counterstrike Source : Global Offensive
+# Peon Recipe - Counterstrike Source : Global Offensive
+
+The battle plan that your Peon uses to deploy your game server.
 
 ## Settings
 
@@ -7,9 +9,7 @@
 If you wish to run this server outside of your private network (required by Steam for any servers running outside of your home LAN), you will need to get a game server login token.
 [Registering Game Server Login Token](https://developer.valvesoftware.com/wiki/Counter-Strike:_Global_Offensive_Dedicated_Servers#Registering_Game_Server_Login_Token)
 
-### Game Type
-
-### Game Mode
+> TODO - Add simple description of all server settings
 
 ## [Advanced Server Settings](https://developer.valvesoftware.com/wiki/Counter-Strike:_Global_Offensive_Dedicated_Servers)
 
