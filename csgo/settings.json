@@ -1,0 +1,14 @@
+{
+    "gslt-appid" : {
+        "type" : "string",
+        "value" : null,
+        "description" : "http://steamcommunity.com/dev/managegameservers"
+    },
+    "game-type" : {
+        "type" : "list",
+        "values" : [
+
+        ],
+        "description" : ""
+    }
+}
