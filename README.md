@@ -20,3 +20,4 @@ This is the repo of all of the game server recipe files.
 #### *sprint 1.0.0*
 
 - [ ] Counterstrike Global Offensive
+- [ ] Valhiem
