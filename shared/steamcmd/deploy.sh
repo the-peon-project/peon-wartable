@@ -49,7 +49,7 @@ while (( "$#" )); do
 done
 # set positional arguments in their proper place
 eval set -- "$PARAMS"
-if [ -z ${game+x} ] || [ -z ${servername+x} ] ; then 
+if [ -z ${game+x} ] || [ -z ${servername+x} ] ||[ -z ${game_id+x} ] ; then 
     echo "Not all parameters were passed."
     exit
 fi
@@ -98,6 +98,7 @@ if [ -z "$containers" ]; then
     docker exec -d --workdir /home/steam/steamcmd --user steam $container bash update.sh $game_id
 else
     echo "Container already exists. Exiting."
+    exit 1
 fi
 echo "Script comeplete."
 
