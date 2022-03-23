@@ -19,5 +19,9 @@ This is the repo of all of the game server recipes/plans.
 
 #### **Rolling release**
 
+##### Complete
+- [x] ...
+##### ToDo
 - [ ] Counterstrike Global Offensive
 - [ ] Valhiem
+
