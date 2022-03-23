@@ -46,18 +46,20 @@ if [ -z ${game+x} ] || [ -z ${servername+x} ] ; then
     exit
 fi
 # Logging config start - Create logfile and capture all stdout to it
-logfile="/var/log/peon/$game/$servername/${0##*/}.log"
+log_file_path=/var/log/peon/$game/$servername
+mkdir -p $log_file_path
+logfile="$log_file_path/${0##*/}.log"
+chown -R 1000:1000 $log_file_path
 exec 3>&1 4>&2
 trap 'exec 2>&4 1>&3' 0 1 2 3
 exec 1>>$logfile 2>&1
 # Logging config end
 mkdir -p /var/log/peon/$game/$servername
-chown -R 1000:1000 /var/log/peon
-chown -R 1000:1000 .
 chmod +x run_steamcmd.sh
-server_path="$rootpath/$game/$servername"
+server_path="$PWD/$servername"
 container="peon.warcamp.$game.$servername"
 containers=`docker ps -a | grep -i $container`
+chown -R 1000:1000 .
 if [ "$containers" ] && $overwrite ; then
     echo "Container exists, but overwrite configured. Removing containers before proceeding."
     docker stop $container 
@@ -68,6 +70,7 @@ containers=`docker ps -a | grep -i $container`
 if [ -z "$containers" ]; then
     echo "Creating data paths: [$server_path]"
     mkdir -p $server_path
+    ehco "DEPLOYING CONTAINERS" > $server_path/server.state
     chown -R 1000:1000 $server_path
     echo "Starting container/s..."
     docker run -dit -v $server_path:/home/steam/steamcmd/data -v /var/log/peon/$game/$servername:/var/log/peon --name $container --user steam cm2network/steamcmd
