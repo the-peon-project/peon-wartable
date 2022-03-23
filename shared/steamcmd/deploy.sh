@@ -15,6 +15,15 @@ while (( "$#" )); do
         exit 1
       fi
       ;;
+    -d|--game_id)
+      if [ -n "$2" ] && [ ${2:0:1} != "-" ]; then
+        game_id=$2
+        shift 2
+      else
+        echo "Error: Argument for $1 is missing" >&2
+        exit 1
+      fi
+      ;;
     -n|--server-name)
       if [ -n "$2" ] && [ ${2:0:1} != "-" ]; then
         servername=$2
@@ -86,7 +95,7 @@ if [ -z "$containers" ]; then
     echo "Adding deploy code to container."
     docker cp update.sh $container:/home/steam/steamcmd/.
     echo "Run 'run_steamcmd.sh in container.'"
-    docker exec -d --workdir /home/steam/steamcmd --user steam $container bash update.sh
+    docker exec -d --workdir /home/steam/steamcmd --user steam $container bash update.sh $game_id
 else
     echo "Container already exists. Exiting."
 fi
