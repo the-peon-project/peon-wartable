@@ -1,19 +1,21 @@
 #!/bin/bash
-# STEAM GAME ID
-game_id='740'
-#SCRIPT START
 logfile="/var/log/peon/${0##*/}.log"
-# Logging config start - Create logfile and capture all stdout to it
+# Handle parameters
+if [ $# -eq 0 ]
+  then
+    echo "Steam game id required. e.g. > ./${0##*/} 12345"
+    echo "Script was run without a steam ID" >> $logfile
+    exit 1
+else
+    game_id=$1
+fi
+# Logging config start - capture all
 exec 3>&1 4>&2
 trap 'exec 2>&4 1>&3' 0 1 2 3
 exec 1>>$logfile 2>&1
 # Logging config end
-echo "UPDATING STEAMCMD" > ./data/server.state
-echo "Updating steamcmd."
+echo "STEAMCMD UPDATING" > ./data/server.state
 ./steamcmd.sh +app_update +quit
-echo "PULLING SERVER FILES" > ./data/server.state
-echo "Installing/configuring the game server."
+echo "SERVER UPDATING" > ./data/server.state
 ./steamcmd.sh +force_install_dir ./data +login anonymous +app_update $game_id +quit
-echo "Adding server ready file, for hand back"
 echo "READY" > ./data/server.state
-echo "Processing complete."
