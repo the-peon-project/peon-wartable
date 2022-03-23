@@ -2,8 +2,7 @@
 # STEAM GAME ID
 game_id='740'
 #SCRIPT START
-script="${0##*/}"
-logfile="/var/log/peon/$script.log"
+logfile="/var/log/peon/${0##*/}.log"
 # Logging config start - Create logfile and capture all stdout to it
 exec 3>&1 4>&2
 trap 'exec 2>&4 1>&3' 0 1 2 3
