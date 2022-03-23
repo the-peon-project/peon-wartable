@@ -17,5 +17,3 @@ echo "Installing/configuring the game server."
 echo "Adding server ready file, for hand back"
 echo "READY" > ./data/server.state
 echo "Processing complete."
-
-# https://developer.valvesoftware.com/wiki/Counter-Strike:_Global_Offensive_Dedicated_Servers#Docker
