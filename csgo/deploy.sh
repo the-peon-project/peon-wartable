@@ -75,9 +75,9 @@ if [ -z "$containers" ]; then
     echo "Starting container/s..."
     docker run -dit -v $server_path:/home/steam/steamcmd/data -v /var/log/peon/$game/$servername:/var/log/peon --name $container --user steam cm2network/steamcmd
     echo "Adding deploy code to container."
-    docker cp run_steamcmd.sh $container:/home/steam/steamcmd/.
+    docker cp update.sh $container:/home/steam/steamcmd/.
     echo "Run 'run_steamcmd.sh in container.'"
-    docker exec -d --workdir /home/steam/steamcmd --user steam $container bash run_steamcmd.sh
+    docker exec -d --workdir /home/steam/steamcmd --user steam $container bash update.sh
 else
     echo "Container already exists. Exiting."
 fi
