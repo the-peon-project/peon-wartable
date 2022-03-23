@@ -1,6 +1,5 @@
 #!/bin/bash
 # Get script name for logging
-script="${0##*/}"
 rootpath=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 # Get parameters
 PARAMS=""
@@ -47,7 +46,7 @@ if [ -z ${game+x} ] || [ -z ${servername+x} ] ; then
     exit
 fi
 # Logging config start - Create logfile and capture all stdout to it
-logfile="/var/log/peon/$game/$servername/$script.log"
+logfile="/var/log/peon/$game/$servername/${0##*/}.log"
 exec 3>&1 4>&2
 trap 'exec 2>&4 1>&3' 0 1 2 3
 exec 1>>$logfile 2>&1
@@ -57,7 +56,7 @@ chown -R 1000:1000 /var/log/peon
 chown -R 1000:1000 .
 chmod +x run_steamcmd.sh
 server_path="$rootpath/$game/$servername"
-container="peon.$game.$servername"
+container="peon.warcamp.$game.$servername"
 containers=`docker ps -a | grep -i $container`
 if [ "$containers" ] && $overwrite ; then
     echo "Container exists, but overwrite configured. Removing containers before proceeding."
