@@ -40,7 +40,6 @@ while (( "$#" )); do
 done
 # set positional arguments in their proper place
 eval set -- "$PARAMS"
-
 if [ -z ${game+x} ] || [ -z ${servername+x} ] ; then 
     echo "Not all parameters were passed."
     exit
