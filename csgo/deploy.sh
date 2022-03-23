@@ -73,7 +73,17 @@ if [ -z "$containers" ]; then
     ehco "DEPLOYING CONTAINERS" > $server_path/server.state
     chown -R 1000:1000 $server_path
     echo "Starting container/s..."
-    docker run -dit -v $server_path:/home/steam/steamcmd/data -v /var/log/peon/$game/$servername:/var/log/peon --name $container --user steam cm2network/steamcmd
+    docker run -dit \
+      -v $server_path:/home/steam/steamcmd/data \
+      -v /var/log/peon/$game/$servername:/var/log/peon \
+      -p 6003:6003/udp \
+      -p 7002:7002/udp \
+      -p 27010:27010/udp \
+      -p 27015:27015/udp \
+      -p 27025:27025/udp \
+      --name $container \
+      --user steam \
+      cm2network/steamcmd
     echo "Adding deploy code to container."
     docker cp update.sh $container:/home/steam/steamcmd/.
     echo "Run 'run_steamcmd.sh in container.'"
