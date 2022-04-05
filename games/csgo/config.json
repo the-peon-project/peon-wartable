@@ -1,42 +1,74 @@
 {
     "metadata": {
         "build": "0.1.0",
-        "type": "docker-steamcmd",
-        "ports" : {
-            "udp" : ["6003", "7002","27005", "27010", "27015","27020","27025","26900"],
-            "tcp" : ["27015"]
-        },
-        "steamid": "740",
-        "description": "https://raw.githubusercontent.com/nox-noctua-consulting/peon-recipies/master/csgo/README.md"
+        "description": "https://raw.githubusercontent.com/nox-noctua-consulting/peon-recipies/master/csgo/README.md",
+        "project": "https://github.com/nox-noctua-consulting/peon-plans/tree/master/games/csgo",
+        "maintainers": "umlatt <richard@noxnoctua.com>",
+        "type": "steamcmd"
     },
-    "settings": [
-        {
-            "gslt": {
-                "type": "string",
-                "value": null
-            }
+    "container_config": {
+        "image": "cm2network/steamcmd",
+        "user": "steam",
+        "ports": {
+            "udp": [
+                "6003",
+                "7002",
+                "27005",
+                "27010",
+                "27015",
+                "27020",
+                "27025",
+                "26900"
+            ],
+            "tcp": [
+                "27015"
+            ]
         },
-        {
-            "game-type": {
-                "type": "list",
-                "values": [
-                    "0",
-                    "1",
-                    "4",
-                    "6"
-                ],
-                "default": "0"
-            }
-        },
-        {
-            "game-mode": {
-                "type": "list",
-                "values": [
-                    "0",
-                    "1"
-                ],
-                "default": "0"
+        "volumes": {
+            "/root/peon/servers/csgo/server01/data": {
+                "bind": "/home/steam/steamcmd/data",
+                "mode": "rw"
+            },
+            "/var/log/peon/csgo/server01/": {
+                "bind": "/var/log/peon",
+                "mode": "rw"
+            },
+            "/root/peon/servers/csgo/server01/deployment": {
+                "bind": "/var/log/peon",
+                "mode": "ro"
             }
         }
-    ]
+    },
+    "server_config": {
+        "steamid": "740",
+        "settings": [{
+                "gslt": {
+                    "type": "string",
+                    "value": null
+                }
+            },
+            {
+                "game-type": {
+                    "type": "list",
+                    "values": [
+                        "0",
+                        "1",
+                        "4",
+                        "6"
+                    ],
+                    "default": "0"
+                }
+            },
+            {
+                "game-mode": {
+                    "type": "list",
+                    "values": [
+                        "0",
+                        "1"
+                    ],
+                    "default": "0"
+                }
+            }
+        ]
+    }
 }
