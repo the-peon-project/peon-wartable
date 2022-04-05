@@ -21,6 +21,7 @@
             "26900/udp": 26900,
             "27015/tcp": 27015
         },
+        "variables": ["STEAMID=740"],
         "volumes": {
             "/root/peon/servers/csgo/server01/data": {
                 "bind": "/home/steam/steamcmd/data",
@@ -34,35 +35,13 @@
         "working_directory": "/home/steam/steamcmd"
     },
     "server_config": {
-        "steamid": "740",
-        "settings": [{
-                "gslt": {
-                    "type": "string",
-                    "value": null
-                }
-            },
-            {
-                "game-type": {
-                    "type": "list",
-                    "values": [
-                        "0",
-                        "1",
-                        "4",
-                        "6"
-                    ],
-                    "default": "0"
-                }
-            },
-            {
-                "game-mode": {
-                    "type": "list",
-                    "values": [
-                        "0",
-                        "1"
-                    ],
-                    "default": "0"
-                }
-            }
+        "files": [
+            "update.sh",
+            "start.sh"
+        ],
+        "commands": [
+            "ls",
+            "./update.sh $STEAMID"
         ]
     }
 }
