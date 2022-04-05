@@ -1,28 +1,25 @@
 {
     "metadata": {
-        "build": "0.1.0",
-        "description": "https://raw.githubusercontent.com/nox-noctua-consulting/peon-recipies/master/csgo/README.md",
+        "game_uid": "csgo",
+        "version": "0.1.0",
+        "type": "steamcmd",
         "project": "https://github.com/nox-noctua-consulting/peon-plans/tree/master/games/csgo",
         "maintainers": "umlatt <richard@noxnoctua.com>",
-        "type": "steamcmd"
+        "description": "https://raw.githubusercontent.com/nox-noctua-consulting/peon-recipies/master/csgo/README.md"
     },
     "container_config": {
         "image": "cm2network/steamcmd",
         "user": "steam",
         "ports": {
-            "udp": [
-                "6003",
-                "7002",
-                "27005",
-                "27010",
-                "27015",
-                "27020",
-                "27025",
-                "26900"
-            ],
-            "tcp": [
-                "27015"
-            ]
+            "6003/udp": 6003,
+            "7002/udp": 7002,
+            "27005/udp": 27005,
+            "27010/udp": 27010,
+            "27015/udp": 27015,
+            "27020/udp": 27020,
+            "27025/udp": 27025,
+            "26900/udp": 26900,
+            "27015/tcp": 27015
         },
         "volumes": {
             "/root/peon/servers/csgo/server01/data": {
@@ -32,12 +29,9 @@
             "/var/log/peon/csgo/server01/": {
                 "bind": "/var/log/peon",
                 "mode": "rw"
-            },
-            "/root/peon/servers/csgo/server01/deployment": {
-                "bind": "/var/log/peon",
-                "mode": "ro"
             }
-        }
+        },
+        "working_directory": "/home/steam/steamcmd"
     },
     "server_config": {
         "steamid": "740",
