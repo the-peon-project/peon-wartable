@@ -1,6 +1,6 @@
 #!/bin/bash
 logfile="/var/log/peon/${0##*/}.log"
-rm -rf $logfile
+echo "" > $logfile
 # Handle parameters
 if [ $# -eq 0 ]
   then
@@ -17,6 +17,8 @@ exec 1>>$logfile 2>&1
 # Logging config end
 echo "STEAMCMD UPDATING" > ./data/server.state
 ./steamcmd.sh +app_update +quit
-echo "SERVER UPDATING" > ./data/server.state
-./steamcmd.sh +force_install_dir ./data +login anonymous +app_update $game_id +quit 
+echo "############################## STEAMCMD UPDATED ##############################"
+echo "GAME SERVER UPDATING" > ./data/server.state
+./steamcmd.sh +force_install_dir ./data +login anonymous +app_update $game_id +quit
+echo "############################## GAME SERVER UPDATED ##############################"
 echo "READY" > ./data/server.state

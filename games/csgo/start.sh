@@ -1,6 +1,6 @@
 #!/bin/bash
 logfile="/var/log/peon/${0##*/}.log"
-rm -rf $logfile
+echo "" > $logfile
 # Handle parameters
 if [ $# -eq 0 ]; then
     echo "Steam App ID required. e.g. > ./${0##*/} 12345"
@@ -13,7 +13,7 @@ fi
 exec 3>&1 4>&2
 trap 'exec 2>&4 1>&3' 0 1 2 3
 exec 1>>$logfile 2>&1
-printf "Waiting for update to complete\n"
+echo "############################## WAITING FOR UPDATE TO COMPLETE ##############################"
 timeout=0
 while [ -z $(grep -P  "Success! App .* fully installed." /var/log/peon/update.sh.log) ]; do
     ((timeout++))
@@ -25,6 +25,7 @@ while [ -z $(grep -P  "Success! App .* fully installed." /var/log/peon/update.sh
     fi
 done
 printf "\nUpdate took $timeout seconds.\n"
-printf "Starting game server."
+echo "############################## SERVER IS READY ##############################"
+printf "\nStarting game server."
 data/srcds_run -game csgo -console -usercon +game_type 0 +game_mode 0 +mapgroup mg_active +map de_dust2 +sv_setsteamaccount $steam_app_id &
-echo "RUNNING" > data/server.state
+echo "RUNNING" > ./data/server.state 
