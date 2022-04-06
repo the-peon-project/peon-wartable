@@ -19,10 +19,11 @@ while [[ $(cat data/server.state) != "READY" ]]; do
     printf "."
     sleep 1
     if (( $timeout >= 600 )); then 
-        printf "\nThe update script did not complete within 10 minutes."
+        printf "\nThe start script timedout after 10 minutes."
         exit 124
     fi
 done
 printf "\nUpdate took $timeout seconds.\n"
 printf "Starting game server."
 data/srcds_run -game csgo -console -usercon +game_type 0 +game_mode 0 +mapgroup mg_active +map de_dust2 +sv_setsteamaccount $steam_app_id &
+echo "RUNNING" > data/server.state
