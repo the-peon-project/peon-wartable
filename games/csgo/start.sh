@@ -1,14 +1,6 @@
 #!/bin/bash
 logfile="/var/log/peon/${0##*/}.log"
 echo "" > $logfile
-# Handle parameters
-if [ $# -eq 0 ]; then
-    echo "Steam App ID required. e.g. > ./${0##*/} 12345"
-    echo "Script was run without a steam App ID" >>$logfile
-    exit 1
-else
-    steam_app_id=$1 
-fi
 # Logging config start - capture all
 exec 3>&1 4>&2
 trap 'exec 2>&4 1>&3' 0 1 2 3
@@ -27,5 +19,5 @@ done
 printf "\nUpdate took $timeout seconds.\n"
 echo "############### SERVER FILES AVAILABLE READY ################"
 printf "\nStarting game server."
-data/srcds_run -game csgo -console -usercon +game_type 0 +game_mode 0 +mapgroup mg_active +map de_dust2 +sv_setsteamaccount $steam_app_id
+data/srcds_run -game csgo -console -usercon +game_type 0 +game_mode 0 +mapgroup mg_active +map de_dust2 +sv_setsteamaccount $STEAM_APP_ID
 echo "RUNNING" > ./data/server.state
