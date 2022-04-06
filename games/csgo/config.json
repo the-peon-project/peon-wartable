@@ -21,7 +21,7 @@
             "26900/udp": 26900,
             "27015/tcp": 27015
         },
-        "variables": ["STEAMID=740"],
+        "variables": ["STEAMID=740", "LD_LIBRARY_PATH=/home/steam/steamcmd/data:/home/steam/steamcmd/data/bins"],
         "volumes": {
             "data_path": {
                 "bind": "/home/steam/steamcmd/data",
