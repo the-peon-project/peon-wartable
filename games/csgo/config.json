@@ -44,8 +44,8 @@
             "start.sh"
         ],
         "commands": [
-            "./update.sh $STEAMID",
-            "./start.sh $STEAM_APP_ID"
+            "./update.sh",
+            "./start.sh"
         ]
     }
 }
