@@ -1,5 +1,6 @@
 #!/bin/bash
 logfile="/var/log/peon/${0##*/}.log"
+rm -rf $logfile
 # Handle parameters
 if [ $# -eq 0 ]
   then
@@ -17,5 +18,5 @@ exec 1>>$logfile 2>&1
 echo "STEAMCMD UPDATING" > ./data/server.state
 ./steamcmd.sh +app_update +quit
 echo "SERVER UPDATING" > ./data/server.state
-./steamcmd.sh +force_install_dir ./data +login anonymous +app_update $game_id +quit
+./steamcmd.sh +force_install_dir ./data +login anonymous +app_update $game_id +quit 
 echo "READY" > ./data/server.state
