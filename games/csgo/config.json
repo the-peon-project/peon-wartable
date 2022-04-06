@@ -23,11 +23,11 @@
         },
         "variables": ["STEAMID=740"],
         "volumes": {
-            "/root/peon/servers/csgo/server01/data": {
+            "data_path": {
                 "bind": "/home/steam/steamcmd/data",
                 "mode": "rw"
             },
-            "/var/log/peon/csgo/server01/": {
+            "log_path": {
                 "bind": "/var/log/peon",
                 "mode": "rw"
             }
@@ -40,7 +40,6 @@
             "start.sh"
         ],
         "commands": [
-            "ls",
             "./update.sh $STEAMID"
         ]
     }
