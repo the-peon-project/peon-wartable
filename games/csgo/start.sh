@@ -7,12 +7,16 @@ trap 'exec 2>&4 1>&3' 0 1 2 3
 exec 1>>$logfile 2>&1
 echo "################## WAITING FOR SERVER FILES ##################"
 timeout=0
-while [ -z $(grep -P  "Success! App .* fully installed." /var/log/peon/update.sh.log) ]; do
+tracked_log="/var/log/peon/update.sh.log"
+string_01="Success! App .* fully installed."
+string_02="Success! App .* already up to date."
+while [ -z $(grep -P  "$string_01" $tracked_log) ] && [ -z $(grep -P  "$string_02" $tracked_log) ]; do
     ((timeout++))
     printf "."
     sleep 1
-    if (( $timeout >= 1200 )); then 
-        printf "\nThe start script timedout after 10 minutes."
+    if (( $timeout >= 1800 )); then 
+        printf "\n! Timeout after 30 minutes, waiting for the install/update to complete.\n*"
+        echo "UPDATE TIMEOUT" > ./data/server.state
         exit 124
     fi
 done
