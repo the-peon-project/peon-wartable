@@ -1,5 +1,7 @@
 #!/bin/bash
 logfile="/var/log/peon/${0##*/}.log"
+rootpath="/home/steam/steamcmd"
+cd $rootpath
 echo "" > $logfile
 # Logging config start - capture all
 exec 3>&1 4>&2
@@ -11,8 +13,7 @@ echo "STEAMCMD UPDATING" > ./data/server.state
 ./steamcmd.sh +app_update +quit
 echo "###################### STEAMCMD UPDATED ######################"
 echo "################## DOWNLOADING GAME SERVER ###################"
-echo "SERVER [$game_id]"
+echo "> SERVER ID [$STEAMID]"
 echo "GAME SERVER UPDATING" > ./data/server.state
 ./steamcmd.sh +force_install_dir ./data +login anonymous +app_update $STEAMID +quit
 echo "#################### GAME SERVER UPDATED #####################"
-echo "READY" > ./data/server.state

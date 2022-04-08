@@ -24,9 +24,17 @@
         "variables": {
             "STEAMID": "740",
             "LD_LIBRARY_PATH": "/home/steam/steamcmd/data:/home/steam/steamcmd/data/bins",
-            "STEAM_APP_ID": ""
+            "STEAM_APP_ID": "FAF2A4440AD8A08D4AA17F852C0ED263"
         },
         "volumes": {
+            "shared_plan_path": {
+                "bind": "/home/steam/steamcmd/peon/shared",
+                "mode": "rw"
+            },
+            "unique_plan_path": {
+                "bind": "/home/steam/steamcmd/peon/unique",
+                "mode": "rw"
+            },
             "data_path": {
                 "bind": "/home/steam/steamcmd/data",
                 "mode": "rw"
@@ -36,16 +44,13 @@
                 "mode": "rw"
             }
         },
-        "working_directory": "/home/steam/steamcmd"
+        "working_directory": "/home/steam/steamcmd",
+        "command": ""
     },
     "server_config": {
-        "files": [
-            "update.sh",
-            "start.sh"
-        ],
         "commands": [
-            "./update.sh",
-            "./start.sh"
+            "peon/shared/steamcmd_server_update.sh",
+            "peon/shared/steamcmd_trigger_start.sh"
         ]
     }
 }
