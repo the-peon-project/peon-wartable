@@ -45,12 +45,11 @@
             }
         },
         "working_directory": "/home/steam/steamcmd",
-        "command": ""
+        "command": "peon/shared/steamcmd_trigger_start.sh"
     },
     "server_config": {
         "commands": [
-            "peon/shared/steamcmd_server_update.sh",
-            "peon/shared/steamcmd_trigger_start.sh"
+            "peon/shared/steamcmd_server_update.sh"
         ]
     }
 }
