@@ -39,7 +39,7 @@
                 "mode": "rw"
             },
             "server_config": {
-                "bind": "$HOME/.config/unity3d/IronGate/Valheim/worlds",
+                "bind": "/root/.config/unity3d/IronGate/Valheim/worlds",
                 "mode": "rw"
             }
         },
