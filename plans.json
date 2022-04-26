@@ -1,6 +1,10 @@
 {
-    "csgo" : {
-        "title" : "Counterstrike Global Offensive (CS:GO)",
-        "logo" : "https://seeklogo.com/images/C/csgo-logo-CAA0A4D48A-seeklogo.com.png"
+    "csgo": {
+        "title": "Counterstrike Global Offensive (CS:GO)",
+        "logo": "https://seeklogo.com/images/C/csgo-logo-CAA0A4D48A-seeklogo.com.png"
+    },
+    "valhiem": {
+        "title": "Valhiem",
+        "logo": "https://images.squarespace-cdn.com/content/v1/5e203941ee6ea226e307532c/1591180375783-X8NOPY125RXYVHV3208B/valheim_transparent.png"
     }
 }
