@@ -16,7 +16,10 @@
         },
         "variables": {
             "STEAMID": "896660",
-            "LD_LIBRARY_PATH": "/home/steam/steamcmd/data:/home/steam/steamcmd/data/bins"
+            "LD_LIBRARY_PATH": "/home/steam/steamcmd/data:/home/steam/steamcmd/data/bins",
+            "SERVERNAME": "PEON",
+            "WORLDNAME": "WORLD",
+            "PASSWORD": "password123"
         },
         "volumes": {
             "shared_plan_path": {
