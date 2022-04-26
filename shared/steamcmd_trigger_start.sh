@@ -8,6 +8,7 @@ exec 3>&1 4>&2
 trap 'exec 2>&4 1>&3' 0 1 2 3
 exec 1>>$logfile 2>&1
 echo "################## WAITING FOR SERVER FILES ##################"
+sleep 2 # Allow server update script to clean its log
 timeout=0
 tracked_log="/var/log/peon/steamcmd_server_update.sh.log"
 string_01="Success! App .* fully installed."
@@ -24,7 +25,7 @@ while [ -z $(grep -P  "$string_01" $tracked_log) ] && [ -z $(grep -P  "$string_0
 done
 printf "\nUpdate took $timeout seconds.\n"
 echo "############### SERVER FILES AVAILABLE READY ################"
-printf "\nStarting game server."
+printf "\nStarting game server.\n"
 echo "READY" > ./data/server.state
 ./peon/unique/server_start.sh
 echo "##################### SERVER STARTING #######################"
