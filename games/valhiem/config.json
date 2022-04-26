@@ -38,8 +38,8 @@
                 "bind": "/var/log/peon",
                 "mode": "rw"
             },
-            "server_config": {
-                "bind": "/root/.config/unity3d/IronGate/Valheim/worlds",
+            "config": {
+                "bind": "/home/steam/.config/unity3d/IronGate/Valheim",
                 "mode": "rw"
             }
         },
