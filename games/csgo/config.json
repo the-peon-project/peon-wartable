@@ -35,6 +35,10 @@
                 "bind": "/home/steam/steamcmd/peon/unique",
                 "mode": "rw"
             },
+            "config": {
+                "bind": "/home/steam/config",
+                "mode": "rw"
+            },
             "data_path": {
                 "bind": "/home/steam/steamcmd/data",
                 "mode": "rw"
