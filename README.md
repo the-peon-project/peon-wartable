@@ -1,5 +1,7 @@
 # PEON - Game Plans
 
+![André Kent - Artstation](https://cdna.artstation.com/p/assets/images/images/023/913/316/large/andre-kent-peon-turntable.jpg)
+
 ## The Easy Game Server Manager
 
 ### [Peon Project](https://github.com/nox-noctua-consulting/peon)
