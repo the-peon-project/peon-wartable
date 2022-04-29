@@ -20,13 +20,13 @@ while [ -z $(grep -P  "$string_01" $tracked_log) ] && [ -z $(grep -P  "$string_0
     sleep 1
     if (( $timeout >= 1800 )); then 
         printf "\n! Timeout after 30 minutes, waiting for the install/update to complete.\n*"
-        echo "UPDATE TIMEOUT" > ./data/server.state
+        echo -n "UPDATE TIMEOUT" > ./data/server.state
         exit 124
     fi
 done
 printf "\nUpdate took $timeout seconds.\n"
 echo "############### SERVER FILES AVAILABLE READY ################"
 printf "\nStarting game server.\n"
-echo -n "STARTING" > ./data/server.state
+echo -n "STARTED" > ./data/server.state
 ./peon/unique/server_start.sh
 echo "##################### SERVER STARTING #######################"
