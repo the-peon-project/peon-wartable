@@ -34,7 +34,7 @@ This is the repo of all of the game server recipes/plans.
 
 ## Support the Project
 
-This is an open source project and I am doing it, in my spare time, for fun.\
-However, if you really wish to say thank you, feel free to pick up a virtual coffee for me at Ko-fi.
+PEON is an open-source project that I am working on in my spare time (for fun).
+However, if you still wish to say thanks, feel free to pick up a virtual coffee for me at Ko-fi.
 
 [Buy me a coffee at Ko-fi](https://ko-fi.com/umlatt47309)
