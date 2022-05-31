@@ -14,7 +14,9 @@ If run on a public/paid cloud, it is architected to try minimise costs (easy sch
 
 ### Peon Plans
 
-This is the repo of all of the game server recipes/plans.
+This is the repo of the generic tools used to deploy game servers.
+
+A default organisation has been made for official game server plans will be hostted at [Peon War Plans](https://github.com/peon-war-plans)
 
 ### Architecture/Rules
 
