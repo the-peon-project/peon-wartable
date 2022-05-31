@@ -9,5 +9,11 @@
         "title": "Valhiem",
         "logo": "https://images.squarespace-cdn.com/content/v1/5e203941ee6ea226e307532c/1591180375783-X8NOPY125RXYVHV3208B/valheim_transparent.png",
         "source": "https://github.com/peon-war-plans/valhiem/archive/master.tar.gz"
+    },
+    {
+        "game_uid": "vrising",
+        "title": "V Rising",
+        "logo": "https://cdn.playvrising.com/web2/images/hero/vRisingLogo.png",
+        "source": "https://github.com/peon-war-plans/vrising/archive/master.tar.gz"
     }
 ]
