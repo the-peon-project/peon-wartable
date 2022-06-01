@@ -25,6 +25,14 @@ while [ -z $(grep -P  "$string_01" $tracked_log) ] && [ -z $(grep -P  "$string_0
     fi
 done
 printf "\nUpdate took $timeout seconds.\n"
+pre_reqs=false
+while [ "$pre_reqs" != true ]; do
+    if [ $(which /usr/bin/dig) ]; then pre_reqs=true; fi
+    if [ "$pre_reqs" != true ]; then
+        echo "Waiting for all pre-requisite tools."
+        sleep 1
+    fi
+done
 echo "############### SERVER FILES AVAILABLE READY ################"
 printf "\nStarting game server.\n"
 echo -n "STARTED" > ./data/server.state
