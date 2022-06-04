@@ -45,6 +45,19 @@ Source container provided by [Valve SteamCMD - Docker](https://developer.valveso
 
 - [x] Wine - Deploy windows game servers using wine
 
+### Notes
+
+#### When a **virtual** desktop is required by a WINE app
+
+```bash
+echo "Clean any existing /tmp/.X0-lock"
+rm -rf /tmp/.X0-lock 2>&1
+echo "Start Xvfb"
+Xvfb :0 -screen 0 1024x768x16 &
+echo "Start game server (Using 'DISPLAY=:0.0 ' as a prefix to wine)"
+DISPLAY=:0.0 wine64 /path/to/gameserver/server_start.exe
+```
+
 ## Support the Project
 
 PEON is an open-source project that I am working on in my spare time (for fun).
