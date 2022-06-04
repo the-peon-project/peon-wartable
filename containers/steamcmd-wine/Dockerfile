@@ -5,7 +5,7 @@ LABEL "com.peon.description"="Peon Steamcmd & Wine HQ"
 LABEL "maintainer"="Umlatt <richard@noxnoctua.com>"
 USER root
 # Get latest package versions & instgall dependancies
-RUN apt-get update && apt-get upgrade -y && apt-get install -y gnupg software-properties-common
+RUN apt-get update && apt-get upgrade -y && apt-get install -y gnupg software-properties-common xvfb
 # Configure & install winehq
 RUN dpkg --add-architecture i386
 RUN curl https://dl.winehq.org/wine-builds/winehq.key | apt-key add -
