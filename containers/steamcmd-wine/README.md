@@ -35,7 +35,7 @@ Check [changelog](https://github.com/nox-noctua-consulting/peon-ui/blob/master/c
 
 ### Architecture/Rules
 
-This is a base image for certain game servers that are not linux native. ``Use default [cm2network/steamcmd] if windows is not required (waaaaaaay more efficient))
+This is a base image for certain game servers that are not linux native. ``Use default [cm2network/steamcmd] if windows is not required (waaaaaaay more efficient))``
 
 Source container provided by [Valve SteamCMD - Docker](https://developer.valvesoftware.com/wiki/SteamCMD#Docker)
 
