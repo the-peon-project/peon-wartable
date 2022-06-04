@@ -24,7 +24,7 @@ Functionilty working as required (tested with VRising windows steam server)
 
 ## Version Info
 
-Check [changelog](https://github.com/nox-noctua-consulting/peon-ui/blob/master/changelog.md) for more information
+Check [changelog](https://github.com/nox-noctua-consulting/peon-plans/blob/master/containers/steamcmd-wine/changelog.md) for more information
 
 - Deployed with ``cm2network/steamcmd`` as a base image
 - Added ``wine`` for windows emulation & ``xvfb`` for virtual console emulation (required for some wine apps when running in headless mode)
