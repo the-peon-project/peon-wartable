@@ -11,6 +11,7 @@ RUN dpkg --add-architecture i386
 RUN curl https://dl.winehq.org/wine-builds/winehq.key | apt-key add -
 RUN apt-add-repository https://dl.winehq.org/wine-builds/debian/
 RUN apt-get update && apt-get install -y --install-recommends winehq-stable
+RUN mkdir /tmp/.X11-unix && chmod 1777 /tmp/.X11-unix
 RUN export PATH=$PATH:/opt/wine-stable/bin
 # TEMP: Install debug tools
 RUN apt-get -y install procps iputils-ping dnsutils vim
