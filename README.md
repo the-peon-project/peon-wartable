@@ -16,12 +16,12 @@ If run on a public/paid cloud, it is architected to try minimise costs (easy sch
 
 This is the repo of the generic tools used to deploy game servers.
 
-A default organisation has been made for official game server plans will be hostted at [Peon War Plans](https://github.com/peon-war-plans)
+A default organisation has been made for official game server plans will be hosted at [Peon War Plans](https://github.com/peon-war-plans)
 
 ### Architecture/Rules
 
 1. Only scripts/code to be store here. Large file pulls should be done from other sources.
-2. Attempt to keep the code pool as generic as possible to maximize code reuse/supportability.
+2. Attempt to keep the code pool as generic as possible to maximize code re-use/supportability.
 
 ### Feature Plan
 
@@ -35,6 +35,7 @@ A default organisation has been made for official game server plans will be host
 
 - [ ] Counterstrike Global Offensive
 - [ ] Valhiem
+- [x] VRising
 
 ## Support the Project
 
