@@ -4,6 +4,9 @@
 Art by [André Kent - Artstation](https://www.artstation.com/artwork/W2E0RQ)
 **This project owns no rights to the image above. Please link to the site and request them accordingly.**
 
+[![Docker Pulls](https://img.shields.io/docker/pulls/umlatt/steamcmd-winehq.svg)](https://hub.docker.com/r/umlatt/steamcmd-winehq)
+[![Docker Stars](https://img.shields.io/docker/stars/umlatt/steamcmd-winehq.svg)](https://hub.docker.com/r/umlatt/steamcmd-winehq)
+
 ## The Easy Game Server Manager
 
 ### [Peon Project](https://github.com/nox-noctua-consulting/peon)
