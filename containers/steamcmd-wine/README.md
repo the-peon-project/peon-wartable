@@ -1,4 +1,4 @@
-# PEON - Shared Container - SteamCMD + WineHQ
+# Steamed Wine [SteamCMD + WineHQ]
 
 ![PEON](https://github.com/nox-noctua-consulting/peon/blob/main/media/andre-kent-peon-turntable.jpeg)
 Art by [André Kent - Artstation](https://www.artstation.com/artwork/W2E0RQ)
@@ -8,6 +8,15 @@ Art by [André Kent - Artstation](https://www.artstation.com/artwork/W2E0RQ)
 [![Docker Stars](https://img.shields.io/docker/stars/umlatt/steamcmd-winehq.svg)](https://hub.docker.com/r/umlatt/steamcmd-winehq)
 
 ## The Easy Game Server Manager
+
+### Installation
+
+> This can be deployed as a stand-alone container to run windows steam game servers. *Not yet tested in stand-alone mode (working as part of [Peon Project](https://github.com/nox-noctua-consulting/peon))
+
+```bash
+docker run -dit --name steamedwine -p [gameport_01]:[gameport_01] -p [gameport_02]:[gameport_02] -p [gameport_<n>]:[gameport_<n>] umlatt/steamcmd-winehq:latest
+docker exec -it steamedwine bash
+```
 
 ### [Peon Project](https://github.com/nox-noctua-consulting/peon)
 
