@@ -15,5 +15,11 @@
         "title": "V Rising",
         "logo": "https://cdn.playvrising.com/web2/images/hero/vRisingLogo.png",
         "source": "https://github.com/peon-war-plans/vrising/archive/master.tar.gz"
+    },
+    {
+        "game_uid": "starbound",
+        "title": "Starbound",
+        "logo": "https://playstarbound.com/wp-content/uploads/2016/04/starboundlogo_.png",
+        "source": "https://github.com/peon-war-plans/starbound/archive/master.tar.gz"
     }
 ]
