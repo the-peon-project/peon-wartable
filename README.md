@@ -1,12 +1,12 @@
 # PEON - Game Plans
 
-![PEON](https://github.com/nox-noctua-consulting/peon/blob/main/media/andre-kent-peon-turntable.jpeg)
+![PEON](https://github.com/the-peon-project/peon/blob/main/media/andre-kent-peon-turntable.jpeg)
 Art by [André Kent - Artstation](https://www.artstation.com/artwork/W2E0RQ)
 **This project owns no rights to the image above. Please link to the site and request them accordingly.**
 
 ## The Easy Game Server Manager
 
-### [Peon Project](https://github.com/nox-noctua-consulting/peon)
+### [Peon Project](https://github.com/the-peon-project/peon)
 
 An **OpenSource** project to assist gamers in self deploying/managing game servers.\
 Intended to be a one-stop-shop for game server deployment/management.\
