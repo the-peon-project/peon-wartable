@@ -1,5 +1,5 @@
 # Base image cm2network's steamcmd
-FROM cm2network/steamcmd
+FROM steamcmd/steamcmd
 # Build information
 LABEL "com.peon.description"="Peon SteamCMD"
 LABEL "maintainer"="Umlatt <richard@noxnoctua.com>"
@@ -12,4 +12,4 @@ ENV VERSION=${VERSION}
 RUN echo VERSION=${VERSION} >> /etc/environment
 # Start application
 COPY ./init /init
-CMD ["/bin/bash","/init/entrypoint.sh"]
+ENTRYPOINT ["/init/entrypoint.sh"]
