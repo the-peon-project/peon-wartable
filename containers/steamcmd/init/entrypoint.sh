@@ -1,5 +1,6 @@
 #!/bin/bash
 state_file="/home/peon/status/server.state"
+ip_file="/home/peon/status/ipaddr"
 echo "###################################################"
 echo "##### Starting PEON SteamCMD server v$VERSION"
 echo "###################################################"
@@ -20,6 +21,7 @@ echo "##### Server [START]"
 if [ -e "/init/server_start" ]
 then
     echo -n "READY" > $state_file
+    echo $(dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | tr -d '\"') > $ip_file
     /init/server_start
 else
     echo -n "ERROR - BAD PLAN" > $state_file
