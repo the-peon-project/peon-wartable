@@ -1,7 +1,7 @@
 #!/bin/bash
 state_file="/home/peon/status/server.state"
 ip_file="/home/peon/status/ip_addr"
-echo "0.0.0.0" > > $ip_file
+echo "0.0.0.0" > $ip_file
 echo "###################################################"
 echo "##### Starting PEON SteamCMD server v$VERSION"
 echo "###################################################"
