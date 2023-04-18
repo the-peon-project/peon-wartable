@@ -1,9 +1,9 @@
 #!/bin/bash
-state_file="/root/peon/config/server.state"
+state_file="/home/peon/status/server.state"
 echo "###################################################"
 echo "##### Starting PEON SteamCMD server v$VERSION"
 echo "###################################################"
-echo "#####    Initialisation - START - $(date)"
+echo "##### Initialisation [START] $(date)"
 # ONBOOT
 echo -n "CONTAINER BOOTING" > $state_file
 # RUN STANDARD SCRIPT
