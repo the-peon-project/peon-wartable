@@ -3,6 +3,7 @@ FROM cm2network/steamcmd
 # Build information
 LABEL "com.peon.description"="Peon SteamCMD"
 LABEL "maintainer"="Umlatt <richard@noxnoctua.com>"
+ENV LD_LIBRARY_PATH=/root/.steam/sdk32:$LD_LIBRARY_PATH
 USER root
 # TEMP: Install debug tools
 RUN apt-get update
@@ -11,6 +12,7 @@ RUN apt-get -y install procps iputils-ping dnsutils vim
 ARG VERSION
 ENV VERSION=${VERSION}
 RUN echo VERSION=${VERSION} >> /etc/environment
+USER steam
 # Start application
 COPY ./init /init
 ENTRYPOINT [ "/bin/bash", "/init/entrypoint.sh"]
