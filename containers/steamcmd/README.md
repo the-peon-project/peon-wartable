@@ -40,12 +40,6 @@ Check [changelog](https://github.com/the-peon-project/peon-wartable/blob/master/
 
 Source container provided by [Valve SteamCMD - Docker](https://developer.valvesoftware.com/wiki/SteamCMD#Docker)
 
-### Feature Plan
-
-#### *sprint 1.0.0*
-
-- [x] Adding generic init scripts
-
 ### Notes
 
 This image should track close to the orginal source image. All that is being changed is the addition of a runtime script.
