@@ -30,7 +30,7 @@ Functionilty working as required (tested with VRising windows steam server)
 
 Check [changelog](https://github.com/the-peon-project/peon-wartable/blob/master/containers/steamcmd/changelog.md) for more information
 
-- Deployed with ``steamcmd/steamcmd`` as a base image
+- Deployed with ``cm2network/steamcmd`` as a base image
 
 ### Known Bugs
 
@@ -44,7 +44,7 @@ Source container provided by [Valve SteamCMD - Docker](https://developer.valveso
 
 #### *sprint 1.0.0*
 
-- [ ] Adding generic init scripts
+- [x] Adding generic init scripts
 
 ### Notes
 
