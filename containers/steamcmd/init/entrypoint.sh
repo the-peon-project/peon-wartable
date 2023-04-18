@@ -17,10 +17,10 @@ echo "##### Initialisation [END]"
 
 ### SERVER START
 echo "##### Server [START]"
-if [ -e "/init/server_start.sh" ]
+if [ -e "/init/server_start" ]
 then
     echo -n "READY" > $state_file
-    /init/server_start.sh
+    /init/server_start
 else
     echo -n "ERROR - BAD PLAN" > $state_file
     echo " ERROR /init/server_start.sh not found. Did you forget to mount it?"
