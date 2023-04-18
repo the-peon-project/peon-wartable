@@ -1,4 +1,4 @@
-# Steamed Wine [SteamCMD]
+# SteamCMD [SteamCMD]
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/umlatt/steamcmd.svg)](https://hub.docker.com/r/umlatt/steamcmd)
 [![Docker Stars](https://img.shields.io/docker/stars/umlatt/steamcmd.svg)](https://hub.docker.com/r/umlatt/steamcmd)
@@ -8,11 +8,7 @@
 ### Installation
 
 > This can be deployed as a stand-alone container to run windows steam game servers. *Not yet tested in stand-alone mode (working as part of [Peon Project](https://github.com/the-peon-project/peon))
-
-```bash
-docker run -dit --name steamcmd-p [gameport_01]:[gameport_01] -p [gameport_02]:[gameport_02] -p [gameport_<n>]:[gameport_<n>] umlatt/steamcmd-winehq:latest
-docker exec -it steamedwine bash
-```
+> Alternatively, this is based on [cm2network's steamcmd](https://hub.docker.com/r/cm2network/steamcmd) image.
 
 ### [Peon Project](https://github.com/the-peon-project/peon)
 
@@ -22,7 +18,7 @@ If run on a public/paid cloud, it is architected to try to minimise costs (easy 
 
 ### Peon SteamCMD
 
-The [github](https://github.com/the-peon-project/peon-wartable/tree/master/containers/steamcmde) repo for developing the container.
+The [github](https://github.com/the-peon-project/peon-wartable/tree/master/containers/steamcmd) repo for developing the container.
 
 ## State
 
