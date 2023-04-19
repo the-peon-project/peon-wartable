@@ -6,4 +6,4 @@ echo -n "STEAMCMD UPDATING" > $state_file
 echo "###### Server [UPDATING]"
 echo "> STEAM GAME SERVER ID [$STEAMID]"
 echo -n "GAME SERVER UPDATING" > $state_file
-/home/steam/steamcmd/steamcmd.sh +force_install_dir /home/steam/server_files +login anonymous +app_update $STEAMID +quit
+/home/steam/steamcmd/steamcmd.sh +force_install_dir /home/steam/data +login anonymous +app_update $STEAMID +quit
