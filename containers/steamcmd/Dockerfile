@@ -3,8 +3,13 @@ FROM cm2network/steamcmd
 # Build information
 LABEL "com.peon.description"="Peon SteamCMD"
 LABEL "maintainer"="Umlatt <richard@noxnoctua.com>"
-ENV LD_LIBRARY_PATH=/root/.steam/sdk32:$LD_LIBRARY_PATH
+# CHANGE USER
 USER root
+# BRANDING: Copy branding into container
+COPY ./media/banner /etc/motd
+RUN echo "cat /etc/motd" >> /etc/bash.bashrc
+# ADD LIBRARIES TO PATH
+ENV LD_LIBRARY_PATH=/root/.steam/sdk32:$LD_LIBRARY_PATH
 # TEMP: Install debug tools
 RUN apt-get update
 RUN apt-get -y install procps iputils-ping dnsutils vim
@@ -12,7 +17,6 @@ RUN apt-get -y install procps iputils-ping dnsutils vim
 ARG VERSION
 ENV VERSION=${VERSION}
 RUN echo VERSION=${VERSION} >> /etc/environment
-USER steam
 # Start application
 COPY ./init /init
 ENTRYPOINT [ "/bin/bash", "/init/entrypoint.sh"]
