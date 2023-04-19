@@ -18,5 +18,8 @@ ARG VERSION
 ENV VERSION=${VERSION}
 RUN echo VERSION=${VERSION} >> /etc/environment
 # Start application
+RUN mkdir -p /home/peon/upload /home/peon/download /home/steam/data
+RUN chown -R 1000:1000 /home
+#USER steam
 COPY ./init /init
 ENTRYPOINT [ "/bin/bash", "/init/entrypoint.sh"]
