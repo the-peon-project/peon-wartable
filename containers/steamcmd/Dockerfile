@@ -17,9 +17,10 @@ RUN apt-get -y install procps iputils-ping dnsutils vim
 ARG VERSION
 ENV VERSION=${VERSION}
 RUN echo VERSION=${VERSION} >> /etc/environment
-# Start application
-RUN mkdir -p /home/peon/upload /home/peon/download /home/steam/data
-RUN chown -R 1000:1000 /home
-#USER steam
+# PERMISSIONS
+RUN mkdir -p /home/steam/peon/upload /home/steam/peon/download /home/steam/steamcmd/data
+RUN chown -R 1000:1000 /home/steam
+# CONFIGURE FOR START
+USER steam
 COPY ./init /init
 ENTRYPOINT [ "/bin/bash", "/init/entrypoint.sh"]
