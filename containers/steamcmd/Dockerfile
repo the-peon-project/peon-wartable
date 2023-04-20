@@ -19,8 +19,8 @@ ENV VERSION=${VERSION}
 RUN echo VERSION=${VERSION} >> /etc/environment
 # PERMISSIONS
 RUN mkdir -p /home/steam/peon/upload /home/steam/peon/download /home/steam/steamcmd/data
-RUN chown -R 1000:1000 /home/steam
+RUN chown -R 1000:1000 /home/steam/peon
 # CONFIGURE FOR START
 USER steam
 COPY ./init /init
-ENTRYPOINT [ "/bin/bash", "/init/entrypoint.sh"]
+ENTRYPOINT [ "/bin/bash", "/init/entrypoint"]
