@@ -9,6 +9,6 @@ echo " [-] SERVER [UPDATE CHECK]"
 update_output=$(steamcmd +login $STEAM_USER $STEAM_PASSWORD +app_info_update 1 +app_info_print $STEAMID +quit)
 if echo "$update_output" | grep -q '"up_to_date" : false'; then
     echo " [#] SERVER [UPDATE REQUIRED]"
-    $steamcmd +login $STEAM_USER $STEAM_PASSWORD +force_install_dir $INSTALL_DIR +app_update $STEAMID validate +quit
+    $STEAMCMD_PATH +login $STEAM_USER $STEAM_PASSWORD +force_install_dir $INSTALL_DIR +app_update $STEAMID validate +quit
 fi
 echo " [-] SERVER [UP TO DATE]"
