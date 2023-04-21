@@ -1,14 +1,6 @@
 #!/bin/bash
-
-while true
-do
-    echo "tiktok"
-    sleep 1
-done
-
 state_file="/home/steam/peon/state"
 ip_file="/home/steam/peon/ip"
-#echo -e "\e[32mword\e[0m"
 echo "###################################################"
 echo -e "##### Starting PEON SteamCMD server v$VERSION"
 echo "##### $(date)"
@@ -16,7 +8,7 @@ echo "###################################################"
 echo "##### Initialisation [START]"
 # ONBOOT
 echo -n "BOOTING" > $state_file
-echo "0.0.0.0" > $ip_file
+export SERVER_IP="0.0.0.0" && echo $SERVER_IP > $ip_file
 # RUN STANDARD SCRIPT
 /init/init && echo "PEON INIT - COMPLETE" || { echo "PEON INIT - FAILED"; exit 1; }
 # RUN CUSTOM INIT, IF FOUND
@@ -30,7 +22,7 @@ echo "##### Server [START]"
 if [ -e "/init/server_start" ]
 then
     echo -n "ACTIVE" > $state_file
-    dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | tr -d '\"' > $ip_file
+    export SERVER_IP=$(dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | tr -d '\"') && > $ip_file
     /init/server_start
 else
     echo -n "ERROR.MISSING_START_SCRIPT" > $state_file
