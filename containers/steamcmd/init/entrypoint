@@ -34,7 +34,7 @@ echo " [02] INIT GAME SERVER"
 # START GAME SERVER
 if [ -e "/init/server_start" ]
 then
-    echo -n "ACTIVATED" > $state_file
+    echo -n "ACTIVATED" > $STATE_FILE
     /init/server_start
 else
     state_nok "SERVER START"
