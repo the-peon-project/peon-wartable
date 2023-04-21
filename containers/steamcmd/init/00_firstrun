@@ -1,0 +1,4 @@
+#!/bin/bash
+# RUN AS ROOT
+echo " [#] SET PERMISSIONS"
+chown -R 1000:1000 /home/steam

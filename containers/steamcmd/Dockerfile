@@ -5,7 +5,7 @@ LABEL "com.peon.description"="Peon SteamCMD"
 LABEL "maintainer"="Umlatt <richard@noxnoctua.com>"
 # CHANGE USER
 USER root
-# BRANDING: Copy branding into container
+# BRANDING
 COPY ./media/banner /etc/motd
 RUN echo "cat /etc/motd" >> /etc/bash.bashrc
 # ADD LIBRARIES TO PATH
@@ -17,10 +17,12 @@ RUN apt-get -y install procps iputils-ping dnsutils vim
 ARG VERSION
 ENV VERSION=${VERSION}
 RUN echo VERSION=${VERSION} >> /etc/environment
-# PERMISSIONS
-RUN mkdir -p /home/steam/peon/upload /home/steam/peon/download /home/steam/steamcmd/data
-RUN chown -R 1000:1000 /home/steam/peon
-# CONFIGURE FOR START
-USER steam
 COPY ./init /init
+RUN chown -R 1000:1000 /init
+# FIRSTBOOT PERMISSIONS
+RUN cp /etc/shadow /etc/shadow.bkp && sed -i 's/^root:[^:]*:/root::/' /etc/shadow
+# CONFIGURE ENVIRONMENT
+USER steam
+RUN touch '/init/.firstrun'
+RUN mkdir -p /home/steam/peon/
 ENTRYPOINT [ "/bin/bash", "/init/entrypoint"]

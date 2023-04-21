@@ -1,0 +1,11 @@
+#!/bin/bash
+state_ok(){
+    echo " $1 [COMPLETE]"
+}
+
+state_nok(){
+    echo " $1 [ERROR]"
+    echo -n "ERROR" > $STATE_FILE
+    touch /init/.firstrun
+    exit 1
+}

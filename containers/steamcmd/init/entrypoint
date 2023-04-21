@@ -1,31 +1,44 @@
 #!/bin/bash
-state_file="/home/steam/peon/state"
-ip_file="/home/steam/peon/ip"
+source /init/shared
+# VARIABLES
+export STATE_FILE="/home/steam/peon/state"
+export SERVER_IP=$(dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | tr -d '\"') && echo $SERVER_IP > "/home/steam/peon/ip"
+# MAIN
 echo "###################################################"
-echo -e "##### Starting PEON SteamCMD server v$VERSION"
+echo "##### Starting PEON SteamCMD server v$VERSION"
 echo "##### $(date)"
+echo "##### PUBLIC IP [$SERVER_IP]"
 echo "###################################################"
-echo "##### Initialisation [START]"
-# ONBOOT
-echo -n "BOOTING" > $state_file
-export SERVER_IP="0.0.0.0" && echo $SERVER_IP > $ip_file
-# RUN STANDARD SCRIPT
-/init/init && echo "PEON INIT - COMPLETE" || { echo "PEON INIT - FAILED"; exit 1; }
-# RUN CUSTOM INIT, IF FOUND
-if [ -e "/init/init_custom" ]
+# CHECK IF FIRST RUN - (THIS IS THE ONLY TIME SU IS AVAILABLE)
+echo "INITIALIZING" > $STATE_FILE
+if [ -e /init/.firstrun ] 
 then
-    /init/init_custom && echo "CUSTOM INIT [COMPLETE]" || { echo "CUSTOM INIT [FAILED]"; exit 1; }
+    echo " [00] FIRST RUN"
+    su -c 'chmod -R u+x /init'
+    su -c '/init/00_firstrun' && state_ok "FIRST RUN" || state_nok "FIRST RUN"
+    if [ -e /init/init_custom ]
+    then
+        echo -n " [#] CUSTOM INIT"
+        su -c '/init/init_custom' && state_ok "CUSTOM INIT" || state_nok "CUSTOM INIT"
+    fi
+    su -c 'mv /etc/shadow.bkp /etc/shadow'
+    rm -rf /init/.firstrun
 fi
-echo "##### Initialisation [END]"
-### SERVER START
-echo "##### Server [START]"
+# INITIALIZE STEAM CLIENT
+echo " [01] INIT STEAM CLIENT"
+/init/01_steam && state_ok "INIT STEAM CLIENT" || state_nok "INIT STEAM CLIENT"
+# INITIALIZE GAME SERVER
+echo " [02] INIT GAME SERVER"
+/init/02_game_server && state_ok "INIT GAME SERVER" || state_nok "INIT GAME SERVER"
+# START GAME SERVER
 if [ -e "/init/server_start" ]
 then
-    echo -n "ACTIVE" > $state_file
-    export SERVER_IP=$(dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | tr -d '\"') && > $ip_file
+    echo -n "ACTIVATED" > $state_file
     /init/server_start
 else
-    echo -n "ERROR.MISSING_START_SCRIPT" > $state_file
+    state_nok "SERVER START"
     echo " ERROR /init/server_start not found. Did you forget to configure the mount for it?"
 fi
-echo "##### Server [END]"
+
+
+

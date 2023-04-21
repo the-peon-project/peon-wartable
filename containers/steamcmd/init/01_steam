@@ -1,0 +1,3 @@
+#!/bin/bash
+echo " [-] STEAM CLIENT [UPDATE CHECK]"
+$steamcmd_path +app_update +quit
