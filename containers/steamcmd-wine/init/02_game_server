@@ -1,0 +1,10 @@
+#!/bin/bash
+if [ -z "$STEAM_USER" ]; then
+    STEAM_USER='anonymous'
+    STEAM_PASSWORD=''
+fi
+cd $STEAMCMD_PATH
+echo " [i] STEAM USER [$STEAM_USER]"
+echo " [i] STEAM GAME SERVER ID [$STEAMID]"
+echo " [-] SERVER [UPDATING]"
+./steamcmd.sh +force_install_dir $INSTALL_DIR +login $STEAM_USER $STEAM_PASSWORD +app_update $STEAMID validate +quit

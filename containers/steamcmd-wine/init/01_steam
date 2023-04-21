@@ -1,0 +1,6 @@
+#!/bin/bash
+echo " [-] STEAM CLIENT [UPDATE CHECK]"
+cd $STEAMCMD_PATH
+./steamcmd.sh +app_update +quit
+echo "Awaiting client restart..."
+sleep 1

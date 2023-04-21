@@ -1,0 +1,46 @@
+#!/bin/bash
+source /init/shared
+# VARIABLES
+export INSTALL_DIR='/home/steam/steamcmd/data'
+export STEAMCMD_PATH='/home/steam/steamcmd'
+export STATE_FILE="/home/steam/peon/state"
+export SERVER_IP=$(dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | tr -d '\"') && echo $SERVER_IP > "/home/steam/peon/ip"
+# MAIN
+echo "###################################################"
+echo "##### Starting PEON SteamCMD server v$VERSION"
+echo "##### $(date)"
+echo "##### PUBLIC IP [$SERVER_IP]"
+echo "###################################################"
+# CHECK IF FIRST RUN - (THIS IS THE ONLY TIME SU IS AVAILABLE)
+echo "INITIALIZING" > $STATE_FILE
+if [ ! -e /init/.intiliazed ] 
+then
+    echo " [-] FIRST RUN"
+    su -c 'chmod -R u+x /init'
+    su -c '/init/00_firstrun' && state_ok "FIRST RUN" || state_nok "FIRST RUN"
+    if [ -e /init/init_custom ]
+    then
+        echo -n " [#] CUSTOM INIT"
+        su -c '/init/init_custom' && state_ok "CUSTOM INIT" || state_nok "CUSTOM INIT"
+    fi
+    su -c 'mv /etc/shadow.bkp /etc/shadow'
+    touch /init/.intiliazed 
+fi
+# INITIALIZE STEAM CLIENT
+echo " [-] INIT STEAM CLIENT"
+/init/01_steam && state_ok "INIT STEAM CLIENT" || state_nok "INIT STEAM CLIENT"
+# INITIALIZE GAME SERVER
+echo " [-] INIT GAME SERVER"
+/init/02_game_server && state_ok "INIT GAME SERVER" || state_nok "INIT GAME SERVER"
+# START GAME SERVER
+if [ -e "/init/server_start" ]
+then
+    echo -n "ACTIVATED" > $STATE_FILE
+    /init/server_start
+else
+    state_nok "SERVER START"
+    echo " ERROR /init/server_start not found. Did you forget to configure the mount for it?"
+fi
+
+
+
