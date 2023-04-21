@@ -1,41 +1,15 @@
-# PEON - War Table
+# The *PEON* project (FOSS)
 
-## The Easy Game Server Manager
+[![PEON](https://github.com/the-peon-project/.github/blob/main/media/images/peon-logo.png)](http://www.warcamp.org)
 
-### [Peon Project](https://github.com/the-peon-project/peon)
+Welcome to the PEON project.
 
-An **OpenSource** project to assist gamers in self deploying/managing game servers.\
-Intended to be a one-stop-shop for game server deployment/management.\
-If run on a public/paid cloud, it is architected to try minimise costs (easy schedule/manage uptime vs downtime)\
+The easy to use GSaaS (Game Server as a Service) platform.
 
-### Peon Plans
+*Whether self hosted or in the cloud, PEON aims to be efficient in resource consumption with modern tools for management of **ANY** self-hostable game server.*
 
-This is the repo of the generic tools used to deploy game servers.
+> Click the PEON for all of our docs & development details.
 
-A default organisation has been made for official game server plans will be hosted at [Peon War Plans](https://github.com/peon-war-plans)
+## PEON - War Table
 
-### Architecture/Rules
-
-1. Only scripts/code to be store here. Large file pulls should be done from other sources.
-2. Attempt to keep the code pool as generic as possible to maximize code re-use/supportability.
-
-### Feature Plan
-
-#### **Rolling release**
-
-##### Complete
-
-- [x] ...
-
-##### ToDo
-
-- [ ] Counterstrike Global Offensive
-- [ ] Valhiem
-- [x] VRising
-
-## Support the Project
-
-PEON is an open-source project that I am working on in my spare time (for fun).
-However, if you still wish to say thanks, feel free to pick up a virtual coffee for me at Ko-fi.
-
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/K3K567ILJ)
+This is where the tools like customised container images are developed to facilitate the easy deployment of game servers. For details on this projects development, please click [here](http://docs.warcamp.org/development/02_wartable/)
