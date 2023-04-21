@@ -1,6 +1,7 @@
 #!/bin/bash
 source /init/shared
 # VARIABLES
+export STEAMCMD_PATH='/home/steam/steamcmd/steamcmd.sh'
 export STATE_FILE="/home/steam/peon/state"
 export SERVER_IP=$(dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | tr -d '\"') && echo $SERVER_IP > "/home/steam/peon/ip"
 # MAIN
@@ -11,7 +12,7 @@ echo "##### PUBLIC IP [$SERVER_IP]"
 echo "###################################################"
 # CHECK IF FIRST RUN - (THIS IS THE ONLY TIME SU IS AVAILABLE)
 echo "INITIALIZING" > $STATE_FILE
-if [ -e /init/.firstrun ] 
+if [ ! -e /init/.intiliazed ] 
 then
     echo " [00] FIRST RUN"
     su -c 'chmod -R u+x /init'
@@ -22,7 +23,7 @@ then
         su -c '/init/init_custom' && state_ok "CUSTOM INIT" || state_nok "CUSTOM INIT"
     fi
     su -c 'mv /etc/shadow.bkp /etc/shadow'
-    rm -rf /init/.firstrun
+    touch /init/.intiliazed 
 fi
 # INITIALIZE STEAM CLIENT
 echo " [01] INIT STEAM CLIENT"

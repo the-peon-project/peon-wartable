@@ -23,6 +23,5 @@ RUN chown -R 1000:1000 /init
 RUN cp /etc/shadow /etc/shadow.bkp && sed -i 's/^root:[^:]*:/root::/' /etc/shadow
 # CONFIGURE ENVIRONMENT
 USER steam
-RUN touch '/init/.firstrun'
 RUN mkdir -p /home/steam/peon/
 ENTRYPOINT [ "/bin/bash", "/init/entrypoint"]
