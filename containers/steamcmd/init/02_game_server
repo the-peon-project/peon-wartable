@@ -3,13 +3,8 @@ if [ -z "$STEAM_USER" ]; then
     STEAM_USER='anonymous'
     STEAM_PASSWORD=''
 fi
+cd $STEAMCMD_PATH
 echo " [i] STEAM USER [$STEAM_USER]"
 echo " [i] STEAM GAME SERVER ID [$STEAMID]"
-echo " [-] SERVER [UPDATE CHECK]"
-cd $STEAMCMD_PATH
-update_output=$(./steamcmd.sh +login $STEAM_USER $STEAM_PASSWORD +app_info_update 1 +app_info_print $STEAMID +quit)
-if echo "$update_output" | grep -q '"up_to_date" : false'; then
-    echo " [#] SERVER [UPDATE REQUIRED]"
-    ./steamcmd.sh +login $STEAM_USER $STEAM_PASSWORD +force_install_dir $INSTALL_DIR +app_update $STEAMID validate +quit
-fi
-echo " [-] SERVER [UP TO DATE]"
+echo " [-] SERVER [UPDATING]"
+./steamcmd.sh +force_install_dir $INSTALL_DIR +login $STEAM_USER $STEAM_PASSWORD +app_update $STEAMID validate +quit
