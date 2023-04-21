@@ -1,7 +1,7 @@
 #!/bin/bash
 source /init/shared
 # VARIABLES
-export STEAMCMD_PATH='/home/steam/steamcmd/steamcmd.sh'
+export STEAMCMD_PATH='/home/steam/steamcmd'
 export STATE_FILE="/home/steam/peon/state"
 export SERVER_IP=$(dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | tr -d '\"') && echo $SERVER_IP > "/home/steam/peon/ip"
 # MAIN
