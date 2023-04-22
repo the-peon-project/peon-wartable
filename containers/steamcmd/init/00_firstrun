@@ -1,6 +1,6 @@
 #!/bin/bash
 # RUN AS ROOT
-echo "[#] CREATE PEON DATA"
+echo " [#] CREATE PEON DATA"
 echo "INITIALIZING" > $STATE_FILE
 echo $SERVER_IP > "/home/steam/peon/ip"
 echo " [#] SET PERMISSIONS"
