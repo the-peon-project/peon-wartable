@@ -4,7 +4,7 @@ source /init/shared
 export INSTALL_DIR='/home/steam/steamcmd/data'
 export STEAMCMD_PATH='/home/steam/steamcmd'
 export STATE_FILE="/home/steam/peon/state"
-export SERVER_IP=$(dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | tr -d '\"') && echo $SERVER_IP > "/home/steam/peon/ip"
+export SERVER_IP=$(dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | tr -d '\"')
 # MAIN
 echo "###################################################"
 echo "##### Starting PEON SteamCMD server v$VERSION"
@@ -12,7 +12,6 @@ echo "##### $(date)"
 echo "##### PUBLIC IP [$SERVER_IP]"
 echo "###################################################"
 # CHECK IF FIRST RUN - (THIS IS THE ONLY TIME SU IS AVAILABLE)
-echo "INITIALIZING" > $STATE_FILE
 if [ ! -e /init/.intiliazed ] 
 then
     echo " [-] FIRST RUN"
