@@ -34,7 +34,7 @@ Source container provided by [Valve SteamCMD - Docker](https://developer.valveso
 This container has been built as part of [the PEON project](http://docs.warcamp.org). The intention is to make deploying servers accessible to non-programmer container-skilled persons. It would be great if you'd be willing to test the PEON project and provide feedback. Go [here](http://docs.warcamp.org/guides/#peon-deployment) to get started.
 
 ### Stand-alone mode
- 
+
 Please just go to the [Github for *The PEON Projects* game servers](https://github.com/the-peon-project/peon-warplans) and get the contents of the appropriate game (or clone a game folder and use it as the basis for your own build).
 
 #### Example
@@ -48,7 +48,7 @@ Running a `V Rising` server
 2. Rename `.env.example` to `.env`
 3. Change the settings in `.env` to your desired server settings
 4. Make sure that `server_start` is owned by the docker user and is executable `chown 1000:1000 server_start && chmod u+x server_start`
-5. Run `docker-compose up -d` or `docker compose up -d` (depending on your distribution.
+5. Run `docker-compose up -d` or `docker compose up -d` (depending on your distribution).
 6. Get your container name or container id. Run `docker ps` and identify which container was just started,
 7. You can follow the installation/deployment of the files with `docker logs --follow [container_name]. It should process all the way through to where you see the game server running and producing logs. From here you should be able to connect and join your game.
 
@@ -56,7 +56,8 @@ The installation will take several minutes, depending on your connection, as thi
 
 #### Docker Run
 
-> This **can** be deployed as a stand-alone container to run a Windows-based Steam game server, without the PEON integration, follows.
+> This **can** be deployed as a stand-alone container to run a Windows-based Steam game server, without the PEON integration. 
+> This can be done as follows.
 
 ```bash
 # Start server
