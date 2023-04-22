@@ -23,7 +23,7 @@ Check [changelog](http://docs.warcamp.org/development/02_wartable/#steamed-wine)
 
 ### Architecture/Rules
 
-This is a base image for certain game servers that are not Linux native. ``Use default [cm2network/steamcmd] if Windows is not required (waaaaaaay more efficient))``
+This is a base image for certain game servers that are not Linux native. `Use default [cm2network/steamcmd] if Windows is not required (waaaaaaay more efficient))`
 
 Source container provided by [Valve SteamCMD - Docker](https://developer.valvesoftware.com/wiki/SteamCMD#Docker)
 
