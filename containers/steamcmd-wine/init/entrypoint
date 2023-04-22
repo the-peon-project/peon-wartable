@@ -14,22 +14,22 @@ echo "###################################################"
 # CHECK IF FIRST RUN - (THIS IS THE ONLY TIME SU IS AVAILABLE)
 if [ ! -e /init/.intiliazed ] 
 then
-    echo " [-] FIRST RUN"
+    echo " [i] FIRST RUN"
     su -c 'chmod -R u+x /init'
     su -c '/init/00_firstrun' && state_ok "FIRST RUN" || state_nok "FIRST RUN"
     if [ -e /init/init_custom ]
     then
-        echo -n " [#] CUSTOM INIT"
+        echo -n " [o] CUSTOM INIT"
         su -c '/init/init_custom' && state_ok "CUSTOM INIT" || state_nok "CUSTOM INIT"
     fi
     su -c 'mv /etc/shadow.bkp /etc/shadow'
     touch /init/.intiliazed 
 fi
 # INITIALIZE STEAM CLIENT
-echo " [-] INIT STEAM CLIENT"
+echo " [o] INIT STEAM CLIENT"
 /init/01_steam && state_ok "INIT STEAM CLIENT" || state_nok "INIT STEAM CLIENT"
 # INITIALIZE GAME SERVER
-echo " [-] INIT GAME SERVER"
+echo " [o] INIT GAME SERVER"
 /init/02_game_server && state_ok "INIT GAME SERVER" || state_nok "INIT GAME SERVER"
 # START GAME SERVER
 if [ -e "/init/server_start" ]
