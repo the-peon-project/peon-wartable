@@ -47,6 +47,5 @@ else
     state_nok "SERVER START"
     echo " [X] ERROR /init/server_start not found. Did you forget to configure the mount for it?"
 fi
-
-
-
+# SHUTDOWN SCRIPTS
+echo -n "OFFLINE" > $STATE_FILE
