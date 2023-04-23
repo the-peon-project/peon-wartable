@@ -6,5 +6,5 @@ fi
 cd $STEAMCMD_PATH
 echo " [i] STEAM USER [$STEAM_USER]"
 echo " [i] STEAM GAME SERVER ID [$STEAMID]"
-echo " [o] SERVER [UPDATING]"
+echo " [*] SERVER [UPDATING]"
 ./steamcmd.sh +force_install_dir $INSTALL_DIR +login $STEAM_USER $STEAM_PASSWORD +app_update $STEAMID validate +quit
