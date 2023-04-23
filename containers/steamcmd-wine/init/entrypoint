@@ -3,7 +3,7 @@ source /init/shared
 # VARIABLES
 export INSTALL_DIR='/home/steam/steamcmd/data'
 export STEAMCMD_PATH='/home/steam/steamcmd'
-export STATE_FILE="/home/steam/peon/state"
+export STATE_FILE="/home/steam/config/state"
 export SERVER_IP=$(dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | tr -d '\"')
 # MAIN
 echo "###################################################"

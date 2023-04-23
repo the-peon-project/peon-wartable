@@ -34,5 +34,5 @@ RUN export PATH=$PATH:/opt/wine-stable/bin
 # ----------------------------------------
 # CONFIGURE ENVIRONMENT
 USER steam
-RUN mkdir -p /home/steam/peon/
+RUN mkdir -p /home/steam/config/
 ENTRYPOINT [ "/bin/bash", "/init/entrypoint"]

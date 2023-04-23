@@ -2,6 +2,6 @@
 # RUN AS ROOT
 echo " [o] CREATE PEON DATA"
 echo "INITIALIZING" > $STATE_FILE
-echo $SERVER_IP > "/home/steam/peon/ip"
+echo $SERVER_IP > "/home/steam/config/ip"
 echo " [o] SET PERMISSIONS"
 chown -R 1000:1000 /home/steam
