@@ -41,7 +41,7 @@ fi
 if [ -e "/init/scripts/server_start" ]
 then
     echo " [*] STARTING [$STEAM_ID] GAME SERVER "
-    echo -n "ACTIVATED" > $STATE_FILE
+    echo -n "STARTED" > $STATE_FILE
     /init/scripts/server_start
 else
     state_nok "SERVER START"
