@@ -17,10 +17,10 @@ then
     echo " [i] FIRST CONTAINER RUN"
     su -c 'chmod -R u+x /init'
     su -c '/init/00_firstrun' && state_ok "FIRST RUN" || state_nok "FIRST RUN"
-    if [ -e /init/init_custom ]
+    if [ -e /init/scripts/init_custom ]
     then
         echo -n " [i] CUSTOM INIT"
-        su -c '/init/init_custom' && state_ok "CUSTOM INIT" || state_nok "CUSTOM INIT"
+        su -c '/init/scripts/init_custom' && state_ok "CUSTOM INIT" || state_nok "CUSTOM INIT"
     fi
     su -c 'mv /etc/shadow.bkp /etc/shadow'
     touch /init/.intiliazed 
@@ -38,14 +38,14 @@ then
     rm -rf "/home/steam/config/update"
 fi
 # START GAME SERVER
-if [ -e "/init/server_start" ]
+if [ -e "/init/scripts/server_start" ]
 then
     echo " [*] STARTING [$STEAM_ID] GAME SERVER "
     echo -n "ACTIVATED" > $STATE_FILE
-    /init/server_start
+    /init/scripts/server_start
 else
     state_nok "SERVER START"
-    echo " [X] ERROR /init/server_start not found. Did you forget to configure the mount for it?"
+    echo " [X] ERROR /init/scripts/server_start not found. Did you forget to configure the mount for it?"
 fi
 # SHUTDOWN SCRIPTS
 echo -n "OFFLINE" > $STATE_FILE
