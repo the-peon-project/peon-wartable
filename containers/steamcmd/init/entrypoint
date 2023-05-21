@@ -11,41 +11,49 @@ echo "##### Starting PEON SteamCMD server v$VERSION"
 echo "##### $(date)"
 echo "##### PUBLIC IP [$SERVER_IP]"
 echo "###################################################"
+# PRE-FLIGHT CHECKS
+if [ ! -d /actions ]
+then
+    state_nok "BAD CONFIG"
+    echo " [X] Missing '/actions' directory. Please check your config and try again."
+    exit 1
+fi
 # CHECK IF FIRST RUN - (THIS IS THE ONLY TIME SU IS AVAILABLE)
 if [ ! -e /init/.intiliazed ] 
 then
     echo " [i] FIRST CONTAINER RUN"
     su -c 'chmod -R u+x /init'
+    su -c 'chmod -R u+x /actions && chown -R 1000:1000 /actions'
     su -c '/init/00_firstrun' && state_ok "FIRST RUN" || state_nok "FIRST RUN"
-    if [ -e /init/scripts/init_custom ]
+    if [ -e /actions/init_custom ]
     then
         echo -n " [i] CUSTOM INIT"
-        su -c '/init/scripts/init_custom' && state_ok "CUSTOM INIT" || state_nok "CUSTOM INIT"
+        su -c '/actions/init_custom' && state_ok "CUSTOM INIT" || state_nok "CUSTOM INIT"
     fi
     su -c 'mv /etc/shadow.bkp /etc/shadow'
     touch /init/.intiliazed 
 fi
 # Check if the server data directory is empty, or an update has been requested.
-if [ -z "$(ls -A /home/steam/steamcmd/data)" ] || [ -e "/home/steam/config/update" ]
+if [ -z "$(ls -A /home/steam/steamcmd/data)" ] || [ ! -e "/actions/.update" ]
 then
     echo " [i] INSTALL/UPDATE SERVER FILES"
     # INITIALIZE STEAM CLIENT
-    echo " [*] STEAM CLIENT"
+    echo " [*] UPDATE STEAM CLIENT"
     /init/01_steam && state_ok "INIT STEAM CLIENT" || state_nok "INIT STEAM CLIENT"
     # INITIALIZE GAME SERVER
-    echo " [*] GAME SERVER"
+    echo " [*] UPDATE GAME SERVER"
     /init/02_game_server && state_ok "INIT GAME SERVER" || state_nok "INIT GAME SERVER"
-    rm -rf "/home/steam/config/update"
+    touch "/actions/.update"
 fi
 # START GAME SERVER
-if [ -e "/init/scripts/server_start" ]
+if [ -e "/actions/server_start" ]
 then
     echo " [*] STARTING [$STEAM_ID] GAME SERVER "
     echo -n "STARTED" > $STATE_FILE
-    /init/scripts/server_start
+    /actions/server_start
 else
     state_nok "SERVER START"
-    echo " [X] ERROR /init/scripts/server_start not found. Did you forget to configure the mount for it?"
+    echo " [X] ERROR /actions/server_start not found. Did you forget to configure the mount for it?"
 fi
 # SHUTDOWN SCRIPTS
 echo -n "OFFLINE" > $STATE_FILE

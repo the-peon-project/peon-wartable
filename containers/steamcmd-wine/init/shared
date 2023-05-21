@@ -1,6 +1,7 @@
 #!/bin/bash
 state_ok(){
     echo " $1 [COMPLETE]"
+    echo -n $1 > $STATE_FILE
 }
 
 state_nok(){
