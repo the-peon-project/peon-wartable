@@ -14,8 +14,7 @@ echo "###################################################"
 # PRE-FLIGHT CHECKS
 if [ ! -d /actions ]
 then
-    state_nok "BAD CONFIG"
-    echo " [X] Missing '/actions' directory. Please check your config and try again."
+    state_nok "BAD CONFIG" " [x] Missing '/actions' directory. Please check your config and try again."
     exit 1
 fi
 # CHECK IF FIRST RUN - (THIS IS THE ONLY TIME SU IS AVAILABLE)
@@ -52,8 +51,7 @@ then
     echo -n "STARTED" > $STATE_FILE
     /actions/server_start
 else
-    state_nok "SERVER START"
-    echo " [X] ERROR /actions/server_start not found. Did you forget to configure the mount for it?"
+    state_nok "SERVER START" " [x] ERROR /actions/server_start not found. Did you forget to configure the mount for it?"
 fi
 # SHUTDOWN SCRIPTS
 echo -n "OFFLINE" > $STATE_FILE
