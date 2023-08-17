@@ -6,6 +6,9 @@ state_ok(){
 
 state_nok(){
     echo " $1 [ERROR]"
+    if [ -n "$2" ]; then
+        echo "$2"
+    fi
     echo -n "ERROR" > $STATE_FILE
     touch /init/.firstrun
     exit 1
