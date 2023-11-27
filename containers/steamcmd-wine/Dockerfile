@@ -23,7 +23,7 @@ RUN chown -R 1000:1000 /init
 RUN cp /etc/shadow /etc/shadow.bkp && sed -i 's/^root:[^:]*:/root::/' /etc/shadow
 # ---------------------------------------- 
 # WINE HQ
-RUN apt-get install -y gnupg software-properties-common xvfb lib32gcc1 libstdc++6
+RUN apt-get install -y gnupg software-properties-common xvfb lib32gcc-s1 libstdc++6
 RUN dpkg --add-architecture i386
 RUN curl https://dl.winehq.org/wine-builds/winehq.key | apt-key add -
 RUN apt-add-repository https://dl.winehq.org/wine-builds/debian/
@@ -31,6 +31,7 @@ RUN apt-get update && apt-get install -y --install-recommends winehq-stable
 RUN mkdir /tmp/.X11-unix && chmod 1777 /tmp/.X11-unix
 RUN export PATH=$PATH:/opt/wine-stable/bin
 # WINE HQ
+ENV OS_TYPE=windows
 # ----------------------------------------
 # CONFIGURE ENVIRONMENT
 USER steam
