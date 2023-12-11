@@ -15,3 +15,4 @@ if [[ "${OS_TYPE,,}" == "windows" ]]; then
     ./steamcmd.sh +@sSteamCmdForcePlatformType windows +force_install_dir $INSTALL_DIR +login $STEAM_USER $STEAM_PASSWORD +app_update $STEAM_ID validate +quit
 else
     ./steamcmd.sh +@sSteamCmdForcePlatformType linux +force_install_dir $INSTALL_DIR +login $STEAM_USER $STEAM_PASSWORD +app_update $STEAM_ID validate +quit
+fi
