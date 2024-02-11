@@ -34,7 +34,7 @@ This container has been built as part of [the PEON project](http://docs.warcamp.
 
 ### Stand-alone mode
 
-Please just go to the [Github for *The PEON Projects* game servers](https://github.com/the-peon-project/peon-warplans) and get the contents of the appropriate game (or clone a game folder and use it as the basis for your own build).
+Please just go to the [GitHub for *The PEON Projects* game servers](https://github.com/the-peon-project/peon-warplans) and get the contents of the appropriate game (or clone a game folder and use it as the basis for your own build).
 
 #### Example
 
