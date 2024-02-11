@@ -18,7 +18,7 @@ then
     exit 1
 fi
 # CHECK IF FIRST RUN - (THIS IS THE ONLY TIME SU IS AVAILABLE)
-if [ ! -e /init/.intiliazed ] 
+if [ ! -e /init/.initialized ]
 then
     echo " [i] FIRST CONTAINER RUN"
     su -c 'chmod -R u+x /init'
@@ -30,7 +30,7 @@ then
         su -c '/actions/init_custom' && state_ok "CUSTOM INIT" || state_nok "CUSTOM INIT"
     fi
     su -c 'mv /etc/shadow.bkp /etc/shadow'
-    touch /init/.intiliazed 
+    touch /init/.initialized 
 fi
 # Check if the server data directory is empty, or an update has been requested.
 if [ -z "$(ls -A /home/steam/steamcmd/data)" ] || [ ! -e "/actions/.update" ]
