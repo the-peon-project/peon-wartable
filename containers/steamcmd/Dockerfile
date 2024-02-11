@@ -22,6 +22,7 @@ RUN chown -R 1000:1000 /init
 # FIRSTBOOT PERMISSIONS
 RUN cp /etc/shadow /etc/shadow.bkp && sed -i 's/^root:[^:]*:/root::/' /etc/shadow
 # CONFIGURE ENVIRONMENT
+ENV LOG_PATH=/proc/1/fd/1
 USER steam
 RUN mkdir -p /home/steam/config/
 ENTRYPOINT [ "/bin/bash", "/init/entrypoint"]

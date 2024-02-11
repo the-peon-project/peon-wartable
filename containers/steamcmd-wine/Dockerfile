@@ -34,6 +34,7 @@ RUN export PATH=$PATH:/opt/wine-stable/bin
 ENV OS_TYPE=windows
 # ----------------------------------------
 # CONFIGURE ENVIRONMENT
+ENV LOG_PATH=/proc/1/fd/1
 USER steam
 RUN mkdir -p /home/steam/config/
 ENTRYPOINT [ "/bin/bash", "/init/entrypoint"]
