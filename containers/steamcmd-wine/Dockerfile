@@ -2,7 +2,7 @@
 FROM cm2network/steamcmd
 # Build information
 LABEL "com.peon.description"="Peon Steamcmd & Wine HQ"
-LABEL "maintainer"="Umlatt <richard@noxnoctua.com>"
+LABEL "maintainer"="Umlatt <richard@lazylionconsulting.com>"
 # CHANGE USER
 USER root
 # BRANDING
