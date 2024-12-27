@@ -1,0 +1,18 @@
+#!/bin/bash
+if [ -z "$STEAM_USER" ]; then
+    STEAM_USER='anonymous'
+    STEAM_PASSWORD=''
+fi
+cd $STEAMCMD_PATH
+echo " [i] STEAM USER [$STEAM_USER]"
+echo " [i] STEAM GAME SERVER ID [$STEAM_ID]"
+if [ -z "$STEAM_ID" ]; then
+    echo " [x] SERVER [UPDATING] ERROR - STEAM_ID not provided."
+    exit 1
+fi
+echo " [*] SERVER [UPDATING]"
+if [[ "${OS_TYPE,,}" == "windows" ]]; then
+    ./steamcmd.sh +@sSteamCmdForcePlatformType windows +force_install_dir $INSTALL_DIR +login $STEAM_USER $STEAM_PASSWORD +app_update $STEAM_ID validate +quit
+else
+    ./steamcmd.sh +@sSteamCmdForcePlatformType linux +force_install_dir $INSTALL_DIR +login $STEAM_USER $STEAM_PASSWORD +app_update $STEAM_ID validate +quit
+fi

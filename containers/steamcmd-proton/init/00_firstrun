@@ -1,0 +1,7 @@
+#!/bin/bash
+# RUN AS ROOT
+echo " [*] CREATE PEON DATA"
+echo "INITIALIZING" > $STATE_FILE
+echo $SERVER_IP > "/home/steam/config/ip"
+echo " [*] SET PERMISSIONS"
+chown -R 1000:1000 /home/steam
