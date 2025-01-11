@@ -26,6 +26,7 @@ ENV LOG_PATH=/proc/1/fd/1
 USER steam
 RUN mkdir -p /home/steam/config/
 # Configure version
+ENV CONTAINER_TYPE="steam"
 ARG VERSION
 ENV VERSION=${VERSION}
 RUN echo VERSION=${VERSION} >> /etc/environment

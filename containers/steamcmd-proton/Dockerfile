@@ -47,6 +47,7 @@ ENV UMU_ID 0
 # ----------------------------------------
 RUN mkdir -p /home/steam/config/
 # Configure version
+ENV CONTAINER_TYPE="steam-proton"
 ARG VERSION
 ENV VERSION=${VERSION}
 RUN echo VERSION=${VERSION} >> /etc/environment
