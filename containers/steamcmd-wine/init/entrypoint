@@ -45,6 +45,8 @@ then
     touch "/actions/.update"
 fi
 # START GAME SERVER
+echo $SERVER_IP > "/home/steam/config/ip"
+echo $CONTAINER_TYPE > "/home/steam/config/type"
 if [ -e "/actions/server_start" ]
 then
     echo " [*] STARTING [$STEAM_ID] GAME SERVER "
