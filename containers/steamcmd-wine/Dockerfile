@@ -35,6 +35,7 @@ ENV OS_TYPE=windows
 # ----------------------------------------
 # CONFIGURE ENVIRONMENT
 ENV LOG_PATH=/proc/1/fd/1
+RUN touch /etc/environment && chown 1000:1000 /etc/environment
 USER steam
 RUN mkdir -p /home/steam/config/
 # Configure version

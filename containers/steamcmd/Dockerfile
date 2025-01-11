@@ -23,6 +23,7 @@ RUN chown -R 1000:1000 /init
 RUN cp /etc/shadow /etc/shadow.bkp && sed -i 's/^root:[^:]*:/root::/' /etc/shadow
 # CONFIGURE ENVIRONMENT
 ENV LOG_PATH=/proc/1/fd/1
+RUN touch /etc/environment && chown 1000:1000 /etc/environment
 USER steam
 RUN mkdir -p /home/steam/config/
 # Configure version

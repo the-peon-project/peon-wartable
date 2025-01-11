@@ -27,7 +27,8 @@ RUN dpkg --add-architecture i386
 RUN apt-get install --no-install-recommends -y ca-certificates winbind dbus libfreetype6 curl jq locales lib32gcc-s1 
 RUN echo 'LANG="en_US.UTF-8"' > /etc/default/locale && echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen && locale-gen
 RUN rm -f /etc/machine-id && dbus-uuidgen --ensure=/etc/machine-id
-RUN rm -rf /var/lib/apt/lists/* && apt-get clean && apt-get autoremove -y 
+RUN rm -rf /var/lib/apt/lists/* && apt-get clean && apt-get autoremove -y
+RUN touch /etc/environment && chown 1000:1000 /etc/environment
 USER steam
 ENV STEAMCMD_PATH="/home/steam/steamcmd"
 ENV STEAM_SDK64_PATH="/home/steam/.steam/sdk64"
