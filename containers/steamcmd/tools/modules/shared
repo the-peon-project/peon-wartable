@@ -1,0 +1,38 @@
+#!/bin/bash
+banner_path=./media/motd
+banner_template=./media/banner
+# Add build time info to login banner
+function update_banner(){
+    cat $banner_template > $banner_path
+    banner_width=0
+    while IFS= read -r line; do
+        # Calculate current line's total length including leading whitespaces
+        leading_whitespaces=$(echo "$line" | grep -o '^[[:space:]]*' | wc -c)
+        current_length=${#line}
+        total_length=$((current_length + leading_whitespaces/2 - 1)) # Adjust for wc output
+        if (( total_length > banner_width )); then
+            banner_width=$total_length
+        fi
+    done < $banner_template
+    echo "Banner width (including leading whitespaces): $banner_width"
+    version_string="- Version: $version -"
+    padding=$(( ($banner_width - ${#version_string}) / 2 ))
+    printf "\n%*s%s%*s\n" $padding "" "$version_string" $padding "" >> $banner_path
+    build_date="- Build Date: $(date) -"
+    padding=$(( ($banner_width - ${#build_date}) / 2 ))
+    printf "%*s%s%*s\n\n" $padding "" "$build_date" $padding "" >> $banner_path
+}
+# Build the container as required
+function build_container_image(){
+    if [[ $version ]];
+    then
+        cd $dockerfile_path
+        update_banner
+        docker build --build-arg VERSION="$version" -t $container_tag:$version .
+        docker tag $container_tag:$version $container_tag:latest
+    else
+        printf "Version number required.\n\te.g.\t$0 1.0.2\n"
+        printf "Exisiting images are:\n"
+        docker image list | grep $container_tag
+    fi
+}
