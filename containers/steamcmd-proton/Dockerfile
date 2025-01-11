@@ -6,7 +6,7 @@ LABEL "maintainer"="Umlatt <richard@lazylionconsulting.com>"
 # CHANGE USER
 USER root
 # BRANDING
-COPY ./media/banner /etc/motd
+COPY ./media/motd /etc/motd
 RUN echo "cat /etc/motd" >> /etc/bash.bashrc
 # ADD LIBRARIES TO PATH
 ENV LD_LIBRARY_PATH=/root/.steam/sdk32:$LD_LIBRARY_PATH
