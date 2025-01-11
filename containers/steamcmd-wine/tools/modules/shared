@@ -33,6 +33,6 @@ function build_container_image(){
     else
         printf "Version number required.\n\te.g.\t$0 1.0.2\n"
         printf "Exisiting images are:\n"
-        docker image list | grep $container_tag
+        docker image list | grep -E "^umlatt/steamcmd\s"
     fi
 }
