@@ -46,7 +46,7 @@ then
 fi
 # START GAME SERVER
 echo $SERVER_IP > "/home/steam/config/ip"
-echo $CONTAINER_TYPE > "/home/steam/config/type"
+echo "$CONTAINER_TYPE:$VERSION" > "/home/steam/config/build"
 if [ -e "/actions/server_start" ]
 then
     echo " [*] STARTING [$STEAM_ID] GAME SERVER "
