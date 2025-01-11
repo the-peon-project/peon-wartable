@@ -46,4 +46,8 @@ ENV UMU_ID 0
 # PROTON GE
 # ----------------------------------------
 RUN mkdir -p /home/steam/config/
+# Configure version
+ARG VERSION
+ENV VERSION=${VERSION}
+RUN echo VERSION=${VERSION} >> /etc/environment
 ENTRYPOINT [ "/bin/bash", "/init/entrypoint"]

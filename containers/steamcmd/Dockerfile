@@ -25,4 +25,8 @@ RUN cp /etc/shadow /etc/shadow.bkp && sed -i 's/^root:[^:]*:/root::/' /etc/shado
 ENV LOG_PATH=/proc/1/fd/1
 USER steam
 RUN mkdir -p /home/steam/config/
+# Configure version
+ARG VERSION
+ENV VERSION=${VERSION}
+RUN echo VERSION=${VERSION} >> /etc/environment
 ENTRYPOINT [ "/bin/bash", "/init/entrypoint"]
