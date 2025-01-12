@@ -27,7 +27,7 @@ RUN touch /etc/environment && chown 1000:1000 /etc/environment
 USER steam
 RUN mkdir -p /home/steam/config/
 # Configure version
-ENV CONTAINER_TYPE="steam"
+ENV CONTAINER_TYPE="umlatt/steamcmd"
 ARG VERSION
 ENV VERSION=${VERSION}
 RUN echo VERSION=${VERSION} >> /etc/environment

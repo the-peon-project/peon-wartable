@@ -39,7 +39,7 @@ RUN touch /etc/environment && chown 1000:1000 /etc/environment
 USER steam
 RUN mkdir -p /home/steam/config/
 # Configure version
-ENV CONTAINER_TYPE="steam-winehq"
+ENV CONTAINER_TYPE="steamcmd-winehq"
 ARG VERSION
 ENV VERSION=${VERSION}
 RUN echo VERSION=${VERSION} >> /etc/environment
