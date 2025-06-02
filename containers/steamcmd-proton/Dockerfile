@@ -36,7 +36,7 @@ ENV STEAM_SDK32_PATH="/home/steam/.steam/sdk32"
 ENV OS_TYPE=windows
 # ---------------------------------------- 
 # PROTON GE
-ENV GE_PROTON_VERSION "9-18"
+ENV GE_PROTON_VERSION "10-4"
 ENV GE_PROTON_URL "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/GE-Proton${GE_PROTON_VERSION}/GE-Proton${GE_PROTON_VERSION}.tar.gz"
 RUN mkdir "${STEAMCMD_PATH}/compatibilitytools.d/" && curl -sqL "$GE_PROTON_URL" | tar zxvf - -C "${STEAMCMD_PATH}/compatibilitytools.d/"
 ENV STEAM_COMPAT_CLIENT_INSTALL_PATH "$STEAMCMD_PATH"
