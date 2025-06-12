@@ -39,6 +39,8 @@ ENV OS_TYPE=windows
 ENV GE_PROTON_VERSION "10-4"
 ENV GE_PROTON_URL "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/GE-Proton${GE_PROTON_VERSION}/GE-Proton${GE_PROTON_VERSION}.tar.gz"
 RUN mkdir "${STEAMCMD_PATH}/compatibilitytools.d/" && curl -sqL "$GE_PROTON_URL" | tar zxvf - -C "${STEAMCMD_PATH}/compatibilitytools.d/"
+# Rename extracted Proton GE folder to 'proton'
+RUN find "${STEAMCMD_PATH}/compatibilitytools.d/" -maxdepth 1 -type d -name "GE-Proton*" -exec mv {} "${STEAMCMD_PATH}/compatibilitytools.d/proton" \;
 ENV STEAM_COMPAT_CLIENT_INSTALL_PATH "$STEAMCMD_PATH"
 ENV STEAM_COMPAT_DATA_PATH "${STEAMCMD_PATH}/steamapps/compatdata/${STEAM_APP_ID}"
 RUN mkdir -p $STEAM_COMPAT_DATA_PATH && chmod -R 755 $STEAM_COMPAT_DATA_PATH
