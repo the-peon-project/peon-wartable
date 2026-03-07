@@ -1,0 +1,47 @@
+#!/bin/bash
+set -e
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+OVERWRITE=false
+VERSION=""
+
+# Parse arguments
+for arg in "$@"; do
+  case "$arg" in
+    --overwrite) OVERWRITE=true ;;
+    *) VERSION="$arg" ;;
+  esac
+done
+
+if [[ -z "$VERSION" ]]; then
+  echo "Usage: $0 <version> [--overwrite]"
+  exit 1
+fi
+
+# Check if a versioned tag already exists on the remote registry.
+# Returns 0 (true) if it exists, 1 (false) if not.
+image_exists() {
+  local image="$1"
+  local tag="$2"
+  docker manifest inspect "${image}:${tag}" > /dev/null 2>&1
+}
+
+build_and_push() {
+  local build_dir="$1"
+  local image="$2"
+
+  if [[ "$OVERWRITE" == false ]] && image_exists "$image" "$VERSION"; then
+    echo "SKIP: ${image}:${VERSION} already exists (use --overwrite to force)"
+    return 0
+  fi
+
+  echo "BUILD: ${image}:${VERSION}"
+  cd "${SCRIPT_DIR}/peon-wartable/containers/${build_dir}"
+  tools/package_peon_module "$VERSION" \
+    && docker image push "${image}:${VERSION}" \
+    && docker image push "${image}:latest"
+}
+
+build_and_push "steamcmd-wine"   "umlatt/steamcmd-winehq"
+build_and_push "steamcmd-proton" "umlatt/steamcmd-proton"
+build_and_push "steamcmd"        "umlatt/steamcmd"
