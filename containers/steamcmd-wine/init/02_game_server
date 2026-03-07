@@ -11,6 +11,7 @@ if [ -z "$STEAM_ID" ]; then
     exit 1
 fi
 echo " [*] SERVER [UPDATING]"
+rm -f "$INSTALL_DIR/steamapps/appmanifest_*.acf" # Remove old appmanifest files to prevent conflicts with Proton
 if [[ "${OS_TYPE,,}" == "windows" ]]; then
     ./steamcmd.sh +@sSteamCmdForcePlatformType windows +force_install_dir $INSTALL_DIR +login $STEAM_USER $STEAM_PASSWORD +app_update $STEAM_ID validate +quit
 else
