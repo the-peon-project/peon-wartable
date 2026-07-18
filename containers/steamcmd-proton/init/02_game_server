@@ -3,17 +3,50 @@ if [ -z "$STEAM_USER" ]; then
     STEAM_USER='anonymous'
     STEAM_PASSWORD=''
 fi
-cd $STEAMCMD_PATH
+cd "$STEAMCMD_PATH"
 echo " [i] STEAM USER [$STEAM_USER]"
 echo " [i] STEAM GAME SERVER ID [$STEAM_ID]"
 if [ -z "$STEAM_ID" ]; then
     echo " [x] SERVER [UPDATING] ERROR - STEAM_ID not provided."
     exit 1
 fi
+
+if [[ "${OS_TYPE,,}" == "windows" ]]; then
+    PLATFORM_TYPE="windows"
+else
+    PLATFORM_TYPE="linux"
+fi
+
+steam_update() {
+    ./steamcmd.sh +@sSteamCmdForcePlatformType "$PLATFORM_TYPE" +force_install_dir "$INSTALL_DIR" +login "$STEAM_USER" "$STEAM_PASSWORD" +app_update "$STEAM_ID" validate +quit
+}
+
+repair_steam_download_state() {
+    local steamapps_dir="$INSTALL_DIR/steamapps"
+    local recovery_dir="$steamapps_dir/peon-recovery-$(date +%Y%m%d-%H%M%S)"
+
+    mkdir -p "$steamapps_dir"
+
+    if [ -e "$steamapps_dir/appmanifest_${STEAM_ID}.acf" ] || [ -d "$steamapps_dir/downloading" ] || [ -d "$steamapps_dir/temp" ]; then
+        mkdir -p "$recovery_dir"
+        for stale_path in "appmanifest_${STEAM_ID}.acf" "downloading" "temp"; do
+            if [ -e "$steamapps_dir/$stale_path" ]; then
+                mv "$steamapps_dir/$stale_path" "$recovery_dir/"
+            fi
+        done
+        echo " [i] SERVER [RECOVERY] Backed up stale steam metadata to $recovery_dir"
+    else
+        echo " [i] SERVER [RECOVERY] No stale steam metadata found to clear"
+    fi
+}
+
 echo " [*] SERVER [UPDATING]"
 rm -f "$INSTALL_DIR/steamapps/appmanifest_*.acf" # Remove old appmanifest files to prevent conflicts with Proton
-if [[ "${OS_TYPE,,}" == "windows" ]]; then
-    ./steamcmd.sh +@sSteamCmdForcePlatformType windows +force_install_dir $INSTALL_DIR +login $STEAM_USER $STEAM_PASSWORD +app_update $STEAM_ID validate +quit
-else
-    ./steamcmd.sh +@sSteamCmdForcePlatformType linux +force_install_dir $INSTALL_DIR +login $STEAM_USER $STEAM_PASSWORD +app_update $STEAM_ID validate +quit
+if steam_update; then
+    exit 0
 fi
+
+echo " [!] SERVER [UPDATING] Initial update failed, running metadata recovery and retry"
+repair_steam_download_state
+echo " [*] SERVER [UPDATING] Retrying update"
+steam_update
