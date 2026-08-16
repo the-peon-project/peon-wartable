@@ -23,7 +23,7 @@ RUN chown -R 1000:1000 /init
 RUN cp /etc/shadow /etc/shadow.bkp && sed -i 's/^root:[^:]*:/root::/' /etc/shadow
 # ---------------------------------------- 
 # WINE HQ
-RUN apt-get install -y gnupg software-properties-common xvfb lib32gcc-s1 libstdc++6
+RUN apt-get update && apt-get install -y --no-install-recommends gnupg xvfb lib32gcc-s1 libstdc++6
 RUN dpkg --add-architecture i386
 RUN curl -fsSL https://dl.winehq.org/wine-builds/winehq.key | gpg --dearmor -o /usr/share/keyrings/winehq-archive-keyring.gpg
 RUN DEBIAN_VERSION=$(cat /etc/os-release | grep '^VERSION_CODENAME=' | cut -d '=' -f 2) && echo "deb [signed-by=/usr/share/keyrings/winehq-archive-keyring.gpg] https://dl.winehq.org/wine-builds/debian/ $DEBIAN_VERSION main" > /etc/apt/sources.list.d/winehq.list

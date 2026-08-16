@@ -26,12 +26,28 @@ image_exists() {
   docker manifest inspect "${image}:${tag}" > /dev/null 2>&1
 }
 
+manifest_matches() {
+  local image="$1"
+  local left_tag="$2"
+  local right_tag="$3"
+
+  diff <(docker manifest inspect "${image}:${left_tag}") <(docker manifest inspect "${image}:${right_tag}") > /dev/null 2>&1
+}
+
 build_and_push() {
   local build_dir="$1"
   local image="$2"
 
   if [[ "$OVERWRITE" == false ]] && image_exists "$image" "$VERSION"; then
-    echo "SKIP: ${image}:${VERSION} already exists (use --overwrite to force)"
+    if image_exists "$image" latest && manifest_matches "$image" latest "$VERSION"; then
+      echo "SKIP: ${image}:${VERSION} already exists and latest matches (use --overwrite to force)"
+      return 0
+    fi
+
+    echo "REFRESH: ${image}:latest differs from ${image}:${VERSION}; republishing latest from the version tag"
+    docker pull "${image}:${VERSION}" \
+      && docker tag "${image}:${VERSION}" "${image}:latest" \
+      && docker image push "${image}:latest"
     return 0
   fi
 

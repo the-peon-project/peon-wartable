@@ -17,6 +17,7 @@ Functionality working as required (tested with VRising Windows Steam server)
 
 Check the [changelog](http://docs.warcamp.org/development/02_wartable/#contained-steam) for more information
 
+- Builds stamp the login banner in `media/motd` and bake the requested `VERSION` into the image so downstream servers can report the build number.
 - Deployed with ``cm2network/steamcmd`` as a base image
 - Added generic functions to allow the easy creation of recipes to deploy servers.
 

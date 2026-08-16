@@ -24,7 +24,7 @@ RUN cp /etc/shadow /etc/shadow.bkp && sed -i 's/^root:[^:]*:/root::/' /etc/shado
 # CONFIGURE ENVIRONMENT
 ENV LOG_PATH=/proc/1/fd/1
 RUN dpkg --add-architecture i386 
-RUN apt-get install --no-install-recommends -y ca-certificates winbind dbus libfreetype6 curl jq locales lib32gcc-s1 xvfb 
+RUN apt-get update && apt-get install --no-install-recommends -y ca-certificates winbind dbus libfreetype6 curl jq locales lib32gcc-s1 xvfb 
 RUN mkdir -p /tmp/.X11-unix && chmod 1777 /tmp/.X11-unix
 RUN echo 'LANG="en_US.UTF-8"' > /etc/default/locale && echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen && locale-gen
 RUN rm -f /etc/machine-id && dbus-uuidgen --ensure=/etc/machine-id
@@ -38,8 +38,8 @@ ENV OS_TYPE=windows
 # ---------------------------------------- 
 # PROTON GE
 ENV GE_PROTON_VERSION "11-5"
-ENV GE_PROTON_URL "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/GE-Proton${GE_PROTON_VERSION}/GE-Proton${GE_PROTON_VERSION}.tar.gz"
-RUN mkdir "${STEAMCMD_PATH}/compatibilitytools.d/" && curl -sqL "$GE_PROTON_URL" | tar zxvf - -C "${STEAMCMD_PATH}/compatibilitytools.d/"
+ENV GE_PROTON_URL "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/GE-Proton${GE_PROTON_VERSION}/GE-Proton${GE_PROTON_VERSION}-x86_64.tar.gz"
+RUN mkdir "${STEAMCMD_PATH}/compatibilitytools.d/" && curl -fsSL "$GE_PROTON_URL" | tar xzvf - -C "${STEAMCMD_PATH}/compatibilitytools.d/"
 # Rename extracted Proton GE folder to 'proton'
 RUN find "${STEAMCMD_PATH}/compatibilitytools.d/" -maxdepth 1 -type d -name "GE-Proton*" -exec mv {} "${STEAMCMD_PATH}/compatibilitytools.d/proton" \;
 ENV STEAM_COMPAT_CLIENT_INSTALL_PATH "$STEAMCMD_PATH"

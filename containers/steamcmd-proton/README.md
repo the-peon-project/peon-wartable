@@ -17,6 +17,8 @@ Functionality working as required (tested with Enshrouded Windows Steam server)
 
 Check the [changelog](http://docs.warcamp.org/development/02_wartable/#contained-proton) for more information
 
+- Builds stamp the login banner in `media/motd` and bake the requested `VERSION` into the image so downstream servers can report the build number.
+- Built against the current Debian trixie package set and refreshes apt metadata before package installs.
 - Deployed with ``cm2network/steamcmd`` as a base image
 - Added generic functions to allow the easy creation of recipes to deploy servers.
 
