@@ -42,6 +42,8 @@ build_and_push() {
     && docker image push "${image}:latest"
 }
 
+echo "Getting latest steamcmd containers from cm2network/steamcmd"
+docker pull cm2network/steamcmd:latest
 build_and_push "steamcmd-wine"   "umlatt/steamcmd-winehq"
 build_and_push "steamcmd-proton" "umlatt/steamcmd-proton"
 build_and_push "steamcmd"        "umlatt/steamcmd"
