@@ -36,7 +36,7 @@ build_and_push() {
   fi
 
   echo "BUILD: ${image}:${VERSION}"
-  cd "${SCRIPT_DIR}/peon-wartable/containers/${build_dir}"
+  cd "${SCRIPT_DIR}/containers/${build_dir}"
   tools/package_peon_module "$VERSION" \
     && docker image push "${image}:${VERSION}" \
     && docker image push "${image}:latest"
